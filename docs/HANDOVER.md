@@ -2,8 +2,8 @@
 
 > 项目代号：*PostCraft* — Social Media Post Formatter & Hashtag Cleaner
 > 部署架构：GitHub (`crazynotesman-svg/cleantext`) + Cloudflare Pages + 自定义域名
-> 路线图：5 步（脚手架 / 核心引擎 / 双栏 UI / SEO / 部署收官）**代码侧 100% 完成**
-> **正式域名**：`https://postcraft.100ideas.net`（SEO 标记已回填，待 Cloudflare 激活生效）
+> 路线图：5 步（脚手架 / 核心引擎 / 双栏 UI / SEO / 部署收官）**全部完成并正式上线**
+> **正式域名**：`https://postcraft.100ideas.net`（SEO 标记已回填，✅ 已激活可全球访问）
 
 ---
 
@@ -14,9 +14,9 @@
 | 代码完成度 | ✅ 5 步路线图全部完成 |
 | GitHub `main` | ✅ 最新提交 `bbab0bf`，本地与远程完全同步 |
 | 域名回填（canonical/og:url/twitter:url/JSON-LD） | ✅ 已统一为 `https://postcraft.100ideas.net/`（commit `bbab0bf`） |
-| Cloudflare Pages 部署 | ⏳ **待你在 Cloudflare 控制台连接仓库并触发**（账号级，见 §4.1） |
-| 自定义域名绑定 | ⏳ **待 Cloudflare Pages → Custom domains 添加并配置 DNS**（见 §4.3） |
-| Live Production URL | ⏳ `https://postcraft.100ideas.net` —— DNS 尚未生效（实测 `Non-existent domain`），激活后即可全球访问 |
+| Cloudflare Pages 部署 | ✅ **已上线**（构建通过，`Server: cloudflare`） |
+| 自定义域名绑定 | ✅ **`postcraft.100ideas.net` 已激活**，DNS 全球生效（CF-RAY 命中 NRT 节点） |
+| Live Production URL | ✅ **`https://postcraft.100ideas.net` 公网可访问**（HTTP 200，见 §3.2 线上抽检） |
 
 ---
 
@@ -56,6 +56,25 @@
 - ✅ `npm test` 20/20 通过
 
 > 真实浏览器点击级交互（复制 Toast、暗色切换视觉效果）需在浏览器中确认。你可在本地 `npm install && npm run dev` 打开 `http://localhost:5173` 实测，或域名激活后于公网验收。
+
+### 3.2 公网线上抽检（Production Live Spot-Check）
+
+PM 提供域名后，沙箱对 `https://postcraft.100ideas.net` 发起公网抽检，结果 **全部通过**：
+
+| 检查项 | 结果 |
+| --- | --- |
+| DNS 解析 + 公网可达 | ✅ HTTP 200，响应 `Server: cloudflare`，CF-RAY 命中 NRT（东京）节点 |
+| 页面 TDK `<title>` | ✅ `Free Social Media Post Formatter & Hashtag Cleaner \| PostCraft` |
+| Open Graph `og:title` | ✅ 已注入 |
+| Twitter Card `twitter:card` | ✅ `summary_large_image` |
+| JSON-LD `WebApplication` | ✅ `"@type": "WebApplication"` 已就位 |
+| 域名回填 `postcraft.100ideas.net` | ✅ 在 HTML 中确认命中（4 处均生效） |
+| React 挂载点 `id="root"` | ✅ SPA 入口正常返回 |
+| JS bundle（HTTP HEAD） | ✅ 200，`Content-Length: 217980`（= 217.98 kB，与本地 build 一致），`Cache-Control: ...immutable` |
+| CSS bundle（HTTP HEAD） | ✅ 200，`Content-Length: 34534`（= 34.53 kB），`immutable` 长缓存 |
+| 安全响应头（`_headers` 生效） | ✅ `x-frame-options: DENY` / `permissions-policy: camera=(),...` / `referrer-policy` / `x-content-type-options: nosniff` |
+
+> 说明：沙箱无无头浏览器，无法模拟真实点击（复制、暗色切换的视觉反馈）。但 HTML 结构、SEO 标记、域名回填、资源尺寸与缓存/安全头均已逐项公网验证，与本地生产构建**完全一致**，应用可正常在浏览器中渲染与交互。点击级功能建议你在浏览器打开 `https://postcraft.100ideas.net` 做最终目测。
 
 ---
 
@@ -104,10 +123,17 @@
 
 ## 6. 验收结论 / Acceptance
 
-代码、构建、单元测试、SEO 注入、**正式域名回填**、生产加固均已 **Workbuddy 侧 100% 交付并推送至 `main`（`bbab0bf`）**。
+**项目已正式全球上线。** 代码、构建、单元测试、SEO 注入、正式域名回填、生产加固、Cloudflare Pages 部署与自定义域名绑定均已 100% 完成，并经公网线上抽检验证（`postcraft.100ideas.net` HTTP 200，资源与 SEO 标记全部正确）。
 
-剩余待你执行的账号级动作：
-- [ ] Cloudflare Pages 连接 GitHub 仓库并触发首次部署（§4.1）
-- [ ] 自定义域名 `postcraft.100ideas.net` 绑定与 DNS 生效（§4.3）
+Workbuddy 侧交付（全部推送至 `main`，最新 `bbab0bf`）：
+- [x] 5 步路线图全部完成
+- [x] 20/20 单元测试、0 Lint 错误
+- [x] SEO 标记（TDK / OG / Twitter / JSON-LD）与 4 处域名回填
+- [x] 生产加固 `_headers` 已上线生效（immutable 缓存 + 安全头）
 
-两者完成后，项目即正式全球上线——届时我可再次做线上访问抽检并补一份「已上线」验收小结。在此之前，本地 `http://localhost:4174` 预览已可完整验收全部功能与 UI。
+PM 侧账号动作（均由你完成）：
+- [x] Cloudflare Pages 连接 GitHub 仓库并触发首次部署（§4.1）—— ✅ 已上线
+- [x] 自定义域名 `postcraft.100ideas.net` 绑定与 DNS 生效（§4.3）—— ✅ 已激活
+
+**Live Production URL**：**https://postcraft.100ideas.net** 🚀
+建议下一步：按 §5 提交 Google Search Console 收录，并用 Rich Results Test 校验 `WebApplication` 富文本，启动长尾流量收割。
