@@ -16,27 +16,25 @@ export const ZWSP = '​'
 
 // --- Unicode "font" mapping ------------------------------------------------
 
-// Each style maps the 26 ASCII letters (+ digits where they exist) onto the
-// Mathematical Alphanumeric Symbols block. Most are contiguous offsets; script
-// capitals are a sparse exception table (some letters borrow from other blocks).
-const OFFSETS: Record<
-  Exclude<UnicodeStyle, 'normal' | 'script'>,
-  { upper: number; lower: number; digit: number | null }
-> = {
-  // 0x1D400 (A) - 0x41 = 0x1D3BF ; 0x1D41A (a) - 0x61 = 0x1D3B9 ; digits 0x1D7CE
-  bold: { upper: 0x1d3bf, lower: 0x1d3b9, digit: 0x1d7ce - 0x30 },
-  // 0x1D434 (A) - 0x41 = 0x1D3F3 ; 0x1D44E (a) - 0x61 = 0x1D3ED ; no italic digits
-  italic: { upper: 0x1d3f3, lower: 0x1d3ed, digit: null },
-  // 0x1D468 (A) - 0x41 = 0x1D427 ; 0x1D482 (a) - 0x61 = 0x1D421 ; no bold-italic digits
-  boldItalic: { upper: 0x1d427, lower: 0x1d421, digit: null },
-  // 0x1D670 (A) - 0x41 = 0x1D62F ; 0x1D68A (a) - 0x61 = 0x1D629 ; digits 0x1D7F6
-  monospace: { upper: 0x1d62f, lower: 0x1d629, digit: 0x1d7f6 - 0x30 },
+// Each style maps the 26 ASCII letters (+ digits where supported) onto the
+// Unicode "Mathematical Alphanumeric Symbols" block. We DO NOT use a bare
+// `charCode + offset` formula: that lands on RESERVED, unassigned code points
+// (Unicode "gaps") inside the block for a few letters — most notably italic
+// small `h`, whose `+offset` result (U+1D455) is unassigned and would render as
+// a blank/tofu glyph. Instead we materialize an EXPLICIT per-character lookup
+// table for every style, generated from code points (so there are no
+// hand-typed glyphs to get wrong) and with the historical gap characters
+// substituted by their correct Letterlike Symbols glyph.
+
+/** Build a string of `count` consecutive code points starting at `start`. */
+function codepoints(start: number, count: number): string {
+  let s = ''
+  for (let i = 0; i < count; i++) s += String.fromCodePoint(start + i)
+  return s
 }
 
-// Script lowercase is contiguous: 0x1D4B6 (a) - 0x61 = 0x1D455.
-const SCRIPT_LOWER_OFFSET = 0x1d455
-
-// Script capitals are NOT contiguous and several fall back to other blocks.
+// Script capitals are NOT contiguous: several letters borrow their glyph from
+// the Letterlike Symbols block instead of the math block.
 const SCRIPT_UPPER: Record<string, string> = {
   A: '𝒜', B: 'ℬ', C: '𝒞', D: '𝒟', E: 'ℰ', F: 'ℱ', G: '𝒢', H: 'ℋ',
   I: 'ℐ', J: '𝒥', K: '𝒦', L: 'ℒ', M: 'ℳ', N: '𝒩', O: '𝒪', P: '𝒫',
@@ -44,28 +42,56 @@ const SCRIPT_UPPER: Record<string, string> = {
   Y: '𝒴', Z: 'ℨ',
 }
 
+// Explicit, materialized lookup tables for every style the UI emits. Each table
+// is an ARRAY of single-code-point strings (not a bare string) so that indexing
+// by letter position yields the full character — indexing a JS string with `[]`
+// would only return one UTF-16 code unit and shatter math-block surrogate pairs.
+const STYLE_TABLES: Record<
+  Exclude<UnicodeStyle, 'normal'>,
+  { upper: string[]; lower: string[]; digits: string[] | null }
+> = (() => {
+  // Italic lowercase `h`: U+1D44E + 7 = U+1D455 is a reserved gap. The correct
+  // italic small-h glyph is ℎ (U+210E) from the Letterlike Symbols block.
+  const italicLower = [...codepoints(0x1d44e, 26)]
+  italicLower[7] = 'ℎ'
+
+  // Script capitals: use the Letterlike exception glyph where one exists,
+  // otherwise the contiguous math-block capital (U+1D49C..U+1D4B5).
+  const scriptUpper = Array.from({ length: 26 }, (_, i) => {
+    const ch = String.fromCharCode(0x41 + i)
+    return SCRIPT_UPPER[ch] ?? String.fromCodePoint(0x1d49c + i)
+  })
+
+  return {
+    bold: {
+      upper: [...codepoints(0x1d400, 26)],
+      lower: [...codepoints(0x1d41a, 26)],
+      digits: [...codepoints(0x1d7ce, 10)],
+    },
+    italic: { upper: [...codepoints(0x1d434, 26)], lower: italicLower, digits: null },
+    boldItalic: {
+      upper: [...codepoints(0x1d468, 26)],
+      lower: [...codepoints(0x1d482, 26)],
+      digits: null,
+    },
+    monospace: {
+      upper: [...codepoints(0x1d670, 26)],
+      lower: [...codepoints(0x1d68a, 26)],
+      digits: [...codepoints(0x1d7f6, 10)],
+    },
+    script: { upper: scriptUpper, lower: [...codepoints(0x1d4b6, 26)], digits: null },
+  }
+})()
+
 function transformChar(char: string, style: UnicodeStyle): string {
   if (style === 'normal') return char
   const code = char.codePointAt(0)
   if (code === undefined) return char
 
-  if (style === 'script') {
-    if (code >= 0x61 && code <= 0x7a) {
-      return String.fromCodePoint(code + SCRIPT_LOWER_OFFSET)
-    }
-    return SCRIPT_UPPER[char] ?? char
-  }
-
-  const map = OFFSETS[style]
-  if (code >= 0x41 && code <= 0x5a) {
-    return String.fromCodePoint(code + map.upper)
-  }
-  if (code >= 0x61 && code <= 0x7a) {
-    return String.fromCodePoint(code + map.lower)
-  }
-  if (code >= 0x30 && code <= 0x39 && map.digit !== null) {
-    return String.fromCodePoint(code + map.digit)
-  }
+  const table = STYLE_TABLES[style]
+  if (code >= 0x41 && code <= 0x5a) return table.upper[code - 0x41] ?? char
+  if (code >= 0x61 && code <= 0x7a) return table.lower[code - 0x61] ?? char
+  if (code >= 0x30 && code <= 0x39 && table.digits) return table.digits[code - 0x30]
   return char
 }
 

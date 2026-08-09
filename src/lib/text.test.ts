@@ -78,6 +78,38 @@ eq('normalizeToAscii reverses bold', normalizeToAscii(styleText('Hello 123!', 'b
 eq('normalizeToAscii reverses script + digits', normalizeToAscii(styleText('Ab9', 'script')), 'Ab9')
 eq('normalizeToAscii passes plain ASCII through', normalizeToAscii('Hello 123 你好!'), 'Hello 123 你好!')
 
+console.log('explicit mapping / Unicode gaps')
+{
+  const italicHello = styleText('hello', 'italic')
+  // The killer regression check: italic small 'h' MUST be ℎ (U+210E), NOT the
+  // reserved gap U+1D455 that a bare `charCode + offset` formula would produce.
+  eq('italic h maps to letterlike ℎ (U+210E)', italicHello.codePointAt(0), 0x210e)
+  eq('italic hello has exactly 5 code points', [...italicHello].length, 5)
+  eq(
+    'italic hello glyphs are correct',
+    italicHello,
+    String.fromCodePoint(0x210e, 0x1d452, 0x1d459, 0x1d459, 0x1d45c),
+  )
+  eq('italic hello round-trips to ASCII', normalizeToAscii(italicHello), 'hello')
+}
+{
+  const scriptHello = styleText('hello', 'script')
+  eq(
+    'script hello glyphs are correct',
+    scriptHello,
+    String.fromCodePoint(0x1d4bd, 0x1d4ba, 0x1d4c1, 0x1d4c1, 0x1d4c4),
+  )
+  eq('script hello round-trips to ASCII', normalizeToAscii(scriptHello), 'hello')
+}
+eq(
+  'chaining Bold -> Italic -> Script -> Plain returns ASCII',
+  styleText(
+    styleText(styleText(styleText('Hello', 'bold'), 'italic'), 'script'),
+    'normal',
+  ),
+  'Hello',
+)
+
 console.log('cleanHashtags')
 {
   const r = cleanHashtags('Loving this #js #React #js day #react!')
