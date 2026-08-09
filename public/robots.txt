@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://postcraft.100ideas.net/sitemap.xml
