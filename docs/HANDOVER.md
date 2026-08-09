@@ -33,6 +33,7 @@
 - **单元测试**：`npm test` → **20 / 20 通过**（Unicode 字体映射 + 清洗引擎 + 码点计数，见 `src/lib/text.test.ts`）
 - **Lint**：oxlint **0 warning / 0 error**
 - **生产加固**：`public/_headers` —— `/assets/*` 边缘不可变缓存 1 年 + 全局安全响应头
+- **SEO 索引文件**：`public/robots.txt`（允许全站抓取并指向 sitemap）+ `public/sitemap.xml`（单根 URL，`lastmod 2026-08-10`，`changefreq weekly`，`priority 1.0`）—— 均已上线可被 Google 抓取
 
 ### 功能交付清单
 
@@ -113,7 +114,7 @@ PM 提供域名后，沙箱对 `https://postcraft.100ideas.net` 发起公网抽�
 ## 5. 后续运维与 SEO 建议 / Ops & SEO Recommendations
 
 1. **自定义域名 SSL**：Cloudflare 自动签发，无需自管证书。
-2. **Google Search Console**：添加 `https://postcraft.100ideas.net` 并验证，提交收录。建议补充 `public/robots.txt`（允许抓取）+ 单页 `public/sitemap.xml`（列出根 URL），我可代为生成。
+2. **Google Search Console**：添加 `https://postcraft.100ideas.net` 并验证，提交收录。`robots.txt` 与 `sitemap.xml` 现已生成并上线（✅ 公网抽检 200，content-type 正确），可直接在 GSC 提交 `https://postcraft.100ideas.net/sitemap.xml`。
 3. **结构化数据校验**：用 Google **Rich Results Test** 粘贴公网 URL，确认 `WebApplication` 富文本可识别。
 4. **Lighthouse**：本地 `npm run build && npm run preview` 可跑性能/SEO/可访问性审计；`_headers` 长缓存与安全头已为 SEO/性能项加分。
 5. **流量与可用性**：Cloudflare 内置 Analytics 可观察全球访问与缓存命中率。
