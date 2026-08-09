@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef } from 'react'
-import { Type } from 'lucide-react'
+import { Info, Type } from 'lucide-react'
 import { StyleToolbar } from './StyleToolbar'
 import { QuickActions } from './QuickActions'
 import { styleText } from '../../lib/text'
@@ -20,9 +20,18 @@ interface EditorPaneProps {
   onChange: (next: string) => void
   onAction: (action: CleanAction) => void
   showToast: (message: string, tone?: ToastTone) => void
+  highlight?: UnicodeStyle[]
+  tip?: string
 }
 
-export function EditorPane({ value, onChange, onAction, showToast }: EditorPaneProps) {
+export function EditorPane({
+  value,
+  onChange,
+  onAction,
+  showToast,
+  highlight,
+  tip,
+}: EditorPaneProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   // After a style transform we restore the selection once React re-renders.
   const pendingSelection = useRef<{ start: number; end: number } | null>(null)
@@ -72,8 +81,15 @@ export function EditorPane({ value, onChange, onAction, showToast }: EditorPaneP
       </p>
 
       <div className="mt-3">
-        <StyleToolbar onStyle={handleStyle} />
+        <StyleToolbar onStyle={handleStyle} highlight={highlight} />
       </div>
+
+      {tip && (
+        <p className="mt-3 flex items-start gap-2 rounded-lg border border-brand-200 bg-brand-50 px-3 py-2 text-xs leading-relaxed text-brand-800 dark:border-brand-500/40 dark:bg-brand-500/10 dark:text-brand-200">
+          <Info className="mt-0.5 size-4 shrink-0" />
+          <span>{tip}</span>
+        </p>
+      )}
 
       <textarea
         ref={textareaRef}

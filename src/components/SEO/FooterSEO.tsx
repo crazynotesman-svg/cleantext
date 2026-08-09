@@ -1,9 +1,6 @@
 import { ChevronDown } from 'lucide-react'
-
-type FaqItem = {
-  question: string
-  answer: string
-}
+import { Link } from 'react-router-dom'
+import { MATRIX_ROUTES, type FaqItem } from '../../config/seoRoutes'
 
 const FAQ_ITEMS: FaqItem[] = [
   {
@@ -43,9 +40,30 @@ function FaqRow({ item }: { item: FaqItem }) {
   )
 }
 
-export function FooterSEO() {
+export function FooterSEO({ faqs = FAQ_ITEMS }: { faqs?: FaqItem[] }) {
   return (
     <footer className="mt-12 border-t border-slate-200 bg-slate-50/60 dark:border-slate-800 dark:bg-slate-950/40">
+      <nav
+        aria-label="Tools matrix"
+        className="mx-auto w-full max-w-3xl px-4 pt-10 sm:px-6"
+      >
+        <h2 className="text-center text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
+          More free tools
+        </h2>
+        <ul className="mt-4 flex flex-wrap justify-center gap-2">
+          {MATRIX_ROUTES.map((r) => (
+            <li key={r.path}>
+              <Link
+                to={r.path}
+                className="inline-block rounded-full border border-slate-200 bg-white px-4 py-1.5 text-xs font-medium text-slate-700 transition hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-brand-700 dark:hover:bg-slate-800"
+              >
+                {r.h1}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
       <section
         aria-labelledby="faq-heading"
         className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6"
@@ -62,7 +80,7 @@ export function FooterSEO() {
         </p>
 
         <div className="mt-6 space-y-3">
-          {FAQ_ITEMS.map((item) => (
+          {faqs.map((item) => (
             <FaqRow key={item.question} item={item} />
           ))}
         </div>
