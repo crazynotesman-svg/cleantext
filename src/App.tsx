@@ -3,7 +3,7 @@ import { Header } from './components/layout/Header'
 import { useDarkMode } from './hooks/useDarkMode'
 import { PLATFORMS } from './lib/platforms'
 
-const REPO_URL = 'https://github.com/postcraft-app/postcraft'
+const REPO_URL = 'https://github.com/crazynotesman-svg/cleantext'
 
 /**
  * Step 1 scaffold: verifies Vite + React + TS + Tailwind + Lucide are wired up
