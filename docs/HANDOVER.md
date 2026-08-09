@@ -44,6 +44,7 @@
 - [x] 一键复制（Clipboard API）+ Toast + `localStorage` 草稿持久化
 - [x] SEO：TDK / canonical / Open Graph / Twitter Card / `WebApplication` JSON-LD / 语义化 FAQ Accordion
 - [x] 正式域名 SEO 标记回填（4 处统一为 `postcraft.100ideas.net`）
+- [x] **长尾关键词矩阵页（Step 5 扩展）**：`react-router-dom` 4 路由（`/` + 3 矩阵页），`useDocumentMeta` 动态切换 title/description/canonical/OG/Twitter/JSON-LD；矩阵页自动预设对应平台 Tab；LinkedIn 高亮 Bold/Italic；IG/Twitter 显示操作提示；Footer 新增「More free tools」跨链导航；`public/_redirects` SPA 回退；`sitemap.xml` 扩至 4 URL
 
 ---
 
@@ -138,3 +139,30 @@ PM 侧账号动作（均由你完成）：
 
 **Live Production URL**：**https://postcraft.100ideas.net** 🚀
 建议下一步：按 §5 提交 Google Search Console 收录，并用 Rich Results Test 校验 `WebApplication` 富文本，启动长尾流量收割。
+
+---
+
+## 7. 长尾关键词矩阵页扩展 / Long-tail Keyword Matrix (Step 5 Expansion)
+
+为把单页工具升维为 SEO 流量引擎，新增 3 个关键词落地页（commit `0294da4`）：
+
+| 路由 | 主打关键词 | 预设行为 |
+| --- | --- | --- |
+| `/instagram-line-break-generator` | instagram line break generator, fix instagram line breaks online | 自动选中 **Instagram** Tab + 显示 IG 换行修复操作提示 |
+| `/linkedin-text-bold-italic` | linkedin bold text generator, linkedin text formatter | 自动选中 **LinkedIn** Tab + **高亮 Bold/Italic** 工具栏 |
+| `/twitter-character-counter` | twitter character counter online, x post line limit tool | 自动选中 **X/Twitter** Tab + 显示 280 字符倒计时提示 |
+
+**技术实现**：
+- `react-router-dom`（BrowserRouter）+ `src/config/seoRoutes.ts` 路由 TDK 映射表（title/description/keywords/canonical/defaultPlatform/H1/intro/tip/highlight/route-specific FAQ）。
+- `useDocumentMeta` Hook：每次路由切换动态同步 `document.title`、description、canonical、OG、Twitter Card 与 JSON-LD `url`（SPA 感知）。
+- Footer 新增「More free tools」跨链导航，矩阵页互链传递权重。
+- `public/_redirects`（`/* /index.html 200`）保证深链/刷新不 404。
+- `public/sitemap.xml` 扩至 4 个 URL。
+
+**公网验证（沙箱实测）**：
+- 4 路由均 HTTP 200（子路由经 SPA 回退正常服务）。
+- `robots.txt` / `sitemap.xml` 仍为真实静态文件（sitemap 含 4 个 `<loc>`），未被 catch-all 捕获 —— Cloudflare Pages 静态文件优先于 redirect，确认安全。
+- 线上 JS bundle 含 3 个矩阵路由路径与「More free tools」导航。
+- 构建：JS 265 kB（gzip 84.7 kB，react-router 增量）；oxlint 0 error。
+
+> GSC 提示：矩阵页上线后，建议在 Google Search Console 重新提交更新的 `sitemap.xml`（现已含 4 URL），让 3 个新落地页进入抓取队列。
