@@ -63,6 +63,9 @@ export interface UiDict {
     cleanHashtagsHint: string
     trim: string
     trimHint: string
+    /** Clear the whole editor (destructive). */
+    clear: string
+    clearHint: string
   }
   /** Toast messages (some are functions of a value). */
   toast: {
@@ -74,6 +77,8 @@ export interface UiDict {
     hashtagsCleaned: (n: number) => string
     copied: string
     copyFailed: string
+    /** Confirmation after clearing the editor. */
+    cleared: string
   }
   /** "See more" divider label in the preview card. */
   seeMore: string

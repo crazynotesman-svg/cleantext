@@ -171,6 +171,8 @@ export const en: Dict = {
       cleanHashtagsHint: 'Deduplicate hashtags and move them to the end of the post',
       trim: 'Trim Whitespace',
       trimHint: 'Remove trailing spaces and collapse extra blank lines',
+      clear: 'Clear',
+      clearHint: 'Remove all text and start over',
     },
     toast: {
       applied: (style) => `${style} applied to selection`,
@@ -181,6 +183,7 @@ export const en: Dict = {
       hashtagsCleaned: (n) => `${n} hashtag${n > 1 ? 's' : ''} cleaned & moved to end`,
       copied: 'Copied to clipboard!',
       copyFailed: 'Copy failed — select and copy manually',
+      cleared: 'Editor cleared',
     },
     seeMore: 'See more',
     social: {

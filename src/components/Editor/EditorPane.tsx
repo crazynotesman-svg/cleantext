@@ -41,8 +41,19 @@ export function EditorPane({
   const handleStyle = (style: UnicodeStyle) => {
     const ta = textareaRef.current
     if (!ta) return
-    const start = ta.selectionStart
-    const end = ta.selectionEnd
+    const len = value.length
+    // Nothing to style in an empty editor — avoid a misleading toast.
+    if (len === 0) return
+    // Read the live selection. Clamp + normalise so a reversed or out-of-range
+    // selection (possible after focus/blur churn on some browsers) can't throw.
+    let start = ta.selectionStart ?? 0
+    let end = ta.selectionEnd ?? 0
+    if (start > end) [start, end] = [end, start]
+    start = Math.max(0, Math.min(start, len))
+    end = Math.max(0, Math.min(end, len))
+    // Fallback: when there is no explicit selection (collapsed caret, or the
+    // selection was lost because a tap blurred the textarea on mobile), apply
+    // the style to the WHOLE post so the user always sees a clear change.
     const hasSelection = start !== end
     const target = hasSelection ? value.slice(start, end) : value
     const styled = styleText(target, style)
@@ -59,6 +70,13 @@ export function EditorPane({
         ? dict.ui.toast.applied(label)
         : dict.ui.toast.allText(label),
     )
+  }
+
+  const handleClear = () => {
+    onChange('')
+    showToast(dict.ui.toast.cleared)
+    // Return focus to the editor so the user can keep typing immediately.
+    requestAnimationFrame(() => textareaRef.current?.focus())
   }
 
   return (
@@ -95,7 +113,7 @@ export function EditorPane({
       />
 
       <div className="mt-3">
-        <QuickActions onAction={onAction} />
+        <QuickActions onAction={onAction} onClear={handleClear} />
       </div>
     </section>
   )

@@ -168,6 +168,8 @@ export const pt: Dict = {
       cleanHashtagsHint: 'Remove hashtags duplicadas e as move para o final do post',
       trim: 'Remover espaços',
       trimHint: 'Remove espaços finais e reduz linhas em branco extras',
+      clear: 'Limpar',
+      clearHint: 'Remove todo o texto e recomeça',
     },
     toast: {
       applied: (style) => `${style} aplicado à seleção`,
@@ -175,6 +177,7 @@ export const pt: Dict = {
       igFixed: 'Quebras de linha do Instagram corrigidas',
       trimmed: 'Espaços removidos',
       noHashtags: 'Nenhuma hashtag encontrada',
+      cleared: 'Editor limpo',
       hashtagsCleaned: (n) =>
         `${n} hashtag${n > 1 ? 's' : ''} limpa${n > 1 ? 's' : ''} e movida${n > 1 ? 's' : ''} para o final`,
       copied: 'Copiado para a área de transferência!',

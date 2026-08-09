@@ -24,11 +24,21 @@ export function StyleToolbar({
             key={id}
             type="button"
             disabled={disabled}
-            // Keep the textarea focused + its selection intact when the button is
-            // clicked. Without this, the mousedown blurs the textarea and some
-            // browsers clear the selection, so styleText would style the whole
-            // post instead of just the selected range.
+            // Keep the textarea focused + its selection intact.
+            // - Mouse: preventDefault on mousedown stops the textarea from
+            //   blurring so the selection survives into handleStyle.
+            // - Touch: preventDefault on touchstart stops the tap from blurring
+            //   the textarea (which would otherwise clear the selection before
+            //   the synthesized click). We then fire the action on touchend,
+            //   because preventDefault on touchstart also suppresses the
+            //   synthesized click on mobile — without touchend the button would
+            //   do nothing on phones/tablets.
             onMouseDown={(e) => e.preventDefault()}
+            onTouchStart={(e) => e.preventDefault()}
+            onTouchEnd={(e) => {
+              e.preventDefault()
+              onStyle(id)
+            }}
             onClick={() => onStyle(id)}
             title={dict.ui.styleTooltip(label)}
             aria-label={dict.ui.styleTooltip(label)}

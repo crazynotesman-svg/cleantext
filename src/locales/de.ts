@@ -168,6 +168,8 @@ export const de: Dict = {
       cleanHashtagsHint: 'Hashtags deduplizieren und ans Ende des Beitrags verschieben',
       trim: 'Leerzeichen entfernen',
       trimHint: 'Abschließende Leerzeichen entfernen und überflüssige Leerzeilen zusammenfassen',
+      clear: 'Löschen',
+      clearHint: 'Entfernt den gesamten Text und startet neu',
     },
     toast: {
       applied: (style) => `${style} auf Auswahl angewendet`,
@@ -175,6 +177,7 @@ export const de: Dict = {
       igFixed: 'Instagram-Zeilenumbrüche korrigiert',
       trimmed: 'Leerzeichen entfernt',
       noHashtags: 'Keine Hashtags gefunden',
+      cleared: 'Editor geleert',
       hashtagsCleaned: (n) =>
         `${n} Hashtag${n > 1 ? 's' : ''} bereinigt und ans Ende verschoben`,
       copied: 'In Zwischenablage kopiert!',
