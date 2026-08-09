@@ -70,13 +70,75 @@ function transformChar(char: string, style: UnicodeStyle): string {
 }
 
 /**
+ * Reverse map: a styled Unicode character -> its plain ASCII counterpart.
+ *
+ * Built ONCE from the forward `transformChar` definitions for every style the
+ * app actually emits, so it can never drift out of sync. Stylized characters
+ * that no style produces (CJK, emoji, ZWSP, punctuation, plain ASCII) are
+ * simply absent and passed through unchanged by `normalizeToAscii`.
+ */
+const REVERSE_MAP: Map<string, string> = (() => {
+  const m = new Map<string, string>()
+  const styled: UnicodeStyle[] = [
+    'bold',
+    'italic',
+    'boldItalic',
+    'monospace',
+    'script',
+  ]
+  for (const style of styled) {
+    for (let code = 0x41; code <= 0x5a; code++) {
+      const ch = String.fromCharCode(code)
+      const s = transformChar(ch, style)
+      if (s !== ch) m.set(s, ch)
+    }
+    for (let code = 0x61; code <= 0x7a; code++) {
+      const ch = String.fromCharCode(code)
+      const s = transformChar(ch, style)
+      if (s !== ch) m.set(s, ch)
+    }
+    for (let code = 0x30; code <= 0x39; code++) {
+      const ch = String.fromCharCode(code)
+      const s = transformChar(ch, style)
+      if (s !== ch) m.set(s, ch)
+    }
+  }
+  return m
+})()
+
+/**
+ * Reverse any Unicode "font" styling back to plain ASCII.
+ *
+ * This is what makes style chaining possible. Once `styleText` has turned
+ * `Hello` into the mathematical symbols `𝗛𝗲𝗹𝗹𝗼`, a naive second conversion only
+ * matches plain ASCII ranges and would pass those symbols straight through —
+ * so the user sees "the second click does nothing". Normalizing first returns
+ * the text to `Hello`, after which the target style can be applied cleanly.
+ *
+ * Characters that no style produces (CJK, emoji, ZWSP, punctuation, already
+ * plain ASCII) are left untouched.
+ */
+export function normalizeToAscii(text: string): string {
+  let out = ''
+  for (const ch of text) {
+    out += REVERSE_MAP.get(ch) ?? ch
+  }
+  return out
+}
+
+/**
  * Convert an entire string to a Unicode "font". Non-letter/digit characters are
  * passed through untouched. The UI will call this on a selected substring to
  * style only part of the post.
+ *
+ * Any pre-existing styling is normalized back to ASCII first, so chaining
+ * styles (e.g. Bold -> Italic -> Monospace) works deterministically instead of
+ * silently no-op'ing on already-styled characters.
  */
 export function styleText(text: string, style: UnicodeStyle): string {
+  const normalized = normalizeToAscii(text)
   let out = ''
-  for (const ch of text) out += transformChar(ch, style)
+  for (const ch of normalized) out += transformChar(ch, style)
   return out
 }
 

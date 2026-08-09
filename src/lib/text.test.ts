@@ -4,6 +4,7 @@
  */
 import {
   styleText,
+  normalizeToAscii,
   cleanHashtags,
   fixInstagramLineBreaks,
   trimWhitespace,
@@ -38,6 +39,44 @@ eq('script uppercase exceptions', styleText('BHLRZ', 'script'), 'ℬℋℒℛℨ
 eq('boldItalic letters', styleText('Ab', 'boldItalic'), '𝒜𝒷'.replace('𝒜', '𝑨').replace('𝒷', '𝒃'))
 eq('normal is pass-through', styleText('Abc 123!', 'normal'), 'Abc 123!')
 eq('non-latin passes through', styleText('你好', 'bold'), '你好')
+
+console.log('style chaining (Unicode re-encoding fix)')
+eq(
+  'bold -> italic equals fresh italic',
+  styleText(styleText('Hello', 'bold'), 'italic'),
+  styleText('Hello', 'italic'),
+)
+eq(
+  'bold -> monospace equals fresh monospace',
+  styleText(styleText('Hello', 'bold'), 'monospace'),
+  styleText('Hello', 'monospace'),
+)
+eq(
+  'script -> bold equals fresh bold',
+  styleText(styleText('Hello', 'script'), 'bold'),
+  styleText('Hello', 'bold'),
+)
+eq(
+  'bold -> italic -> monospace -> normal is plain ASCII',
+  styleText(
+    styleText(styleText(styleText('Hello', 'bold'), 'italic'), 'monospace'),
+    'normal',
+  ),
+  'Hello',
+)
+eq(
+  'chaining preserves ZWSP line breaks',
+  styleText(styleText(fixInstagramLineBreaks('A\nB'), 'bold'), 'italic'),
+  styleText(fixInstagramLineBreaks('A\nB'), 'italic'),
+)
+eq(
+  'chaining preserves non-latin characters',
+  styleText(styleText('Hello 你好', 'bold'), 'italic'),
+  styleText('Hello 你好', 'italic'),
+)
+eq('normalizeToAscii reverses bold', normalizeToAscii(styleText('Hello 123!', 'bold')), 'Hello 123!')
+eq('normalizeToAscii reverses script + digits', normalizeToAscii(styleText('Ab9', 'script')), 'Ab9')
+eq('normalizeToAscii passes plain ASCII through', normalizeToAscii('Hello 123 你好!'), 'Hello 123 你好!')
 
 console.log('cleanHashtags')
 {
