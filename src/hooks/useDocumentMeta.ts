@@ -1,6 +1,11 @@
 import { useEffect } from 'react'
 import type { RouteSeo } from '../config/seoRoutes'
 
+export interface AlternateLink {
+  hreflang: string
+  href: string
+}
+
 /** Create-or-update a <meta> tag addressed by name or property. */
 function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
   let el = document.head.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`)
@@ -43,11 +48,14 @@ function setJsonLdUrl(url: string) {
 /**
  * Sync the document head with the active route's SEO metadata.
  * Runs on every route change so direct loads and SPA navigation both update
- * title, description, canonical, Open Graph, Twitter Card and JSON-LD.
+ * title, description, canonical, Open Graph, Twitter Card, JSON-LD and the
+ * multilingual hreflang alternates.
  */
-export function useDocumentMeta(seo: RouteSeo) {
+export function useDocumentMeta(seo: RouteSeo, alternates?: AlternateLink[]) {
   useEffect(() => {
     document.title = seo.title
+    document.documentElement.lang = seo.htmlLang
+
     upsertMeta('name', 'description', seo.description)
     upsertMeta('name', 'keywords', seo.keywords)
     upsertCanonical(seo.canonical)
@@ -55,9 +63,24 @@ export function useDocumentMeta(seo: RouteSeo) {
     upsertMeta('property', 'og:title', seo.title)
     upsertMeta('property', 'og:description', seo.description)
     upsertMeta('property', 'og:url', seo.canonical)
+    upsertMeta('property', 'og:locale', seo.ogLocale)
     upsertMeta('name', 'twitter:title', seo.title)
     upsertMeta('name', 'twitter:description', seo.description)
     upsertMeta('name', 'twitter:url', seo.canonical)
     setJsonLdUrl(seo.canonical)
-  }, [seo])
+
+    // hreflang alternates: remove the ones we previously injected, then add the
+    // current set. This avoids stale links when switching locale or page.
+    document.head
+      .querySelectorAll('link[rel="alternate"][data-i18n]')
+      .forEach((el) => el.remove())
+    for (const a of alternates ?? []) {
+      const link = document.createElement('link')
+      link.setAttribute('rel', 'alternate')
+      link.setAttribute('hreflang', a.hreflang)
+      link.setAttribute('href', a.href)
+      link.setAttribute('data-i18n', '')
+      document.head.appendChild(link)
+    }
+  }, [seo, alternates])
 }

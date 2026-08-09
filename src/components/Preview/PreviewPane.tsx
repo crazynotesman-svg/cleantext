@@ -3,6 +3,7 @@ import { PLATFORMS, getPlatform } from '../../lib/platforms'
 import { countChars } from '../../lib/text'
 import type { PlatformId } from '../../types'
 import { PlatformCard } from './PlatformCard'
+import { useI18n } from '../../i18n/useI18n'
 
 interface PreviewPaneProps {
   text: string
@@ -19,6 +20,8 @@ export function PreviewPane({
   onCopy,
   copied,
 }: PreviewPaneProps) {
+  const { dict } = useI18n()
+  const locale = dict.ui.numberLocale
   const platform = getPlatform(activePlatform)
 
   return (
@@ -31,7 +34,7 @@ export function PreviewPane({
         className="flex items-center gap-2 text-sm font-semibold"
       >
         <PanelsTopLeft className="size-4 text-brand-600 dark:text-brand-400" />
-        Live preview
+        {dict.ui.livePreview}
       </h2>
 
       <div className="mt-3 grid grid-cols-3 gap-2">
@@ -61,7 +64,7 @@ export function PreviewPane({
                     : 'text-slate-400 dark:text-slate-500'
                 }`}
               >
-                {c.toLocaleString('en-US')} / {p.charLimit.toLocaleString('en-US')}
+                {c.toLocaleString(locale)} / {p.charLimit.toLocaleString(locale)}
               </span>
             </button>
           )
@@ -72,7 +75,9 @@ export function PreviewPane({
         <PlatformCard platform={platform} text={text} />
       </div>
 
-      <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">{platform.hint}</p>
+      <p className="mt-3 text-xs text-slate-500 dark:text-slate-400">
+        {dict.ui.platformHints[platform.id]}
+      </p>
 
       <button
         type="button"
@@ -80,7 +85,7 @@ export function PreviewPane({
         className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg bg-brand-600 px-4 py-3 text-sm font-semibold text-white shadow-sm shadow-brand-600/30 transition hover:bg-brand-700"
       >
         {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
-        {copied ? 'Copied!' : 'Copy Clean Text'}
+        {copied ? dict.ui.copied : dict.ui.copy}
       </button>
     </aside>
   )

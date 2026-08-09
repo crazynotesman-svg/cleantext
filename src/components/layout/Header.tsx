@@ -1,5 +1,7 @@
 import { Moon, Sparkles, Sun } from 'lucide-react'
 import { GithubMark } from '../icons/GithubMark'
+import { LanguageSelector } from './LanguageSelector'
+import { useI18n } from '../../i18n/useI18n'
 
 interface HeaderProps {
   isDark: boolean
@@ -8,6 +10,7 @@ interface HeaderProps {
 }
 
 export function Header({ isDark, onToggleTheme, repoUrl }: HeaderProps) {
+  const { dict } = useI18n()
   return (
     <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/85 backdrop-blur-md dark:border-slate-800/80 dark:bg-slate-950/85">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between gap-3 px-4 sm:px-6">
@@ -20,12 +23,13 @@ export function Header({ isDark, onToggleTheme, repoUrl }: HeaderProps) {
               PostCraft
             </span>
             <span className="mt-0.5 hidden text-[11px] text-slate-500 sm:block dark:text-slate-400">
-              Format · Clean · Preview
+              {dict.ui.tagline}
             </span>
           </span>
         </a>
 
         <nav className="flex items-center gap-1.5">
+          <LanguageSelector />
           <button
             type="button"
             onClick={onToggleTheme}

@@ -1,26 +1,242 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://postcraft.100ideas.net/</loc>
-    <lastmod>2026-08-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/es</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/de</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/fr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/pt</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/" />
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://postcraft.100ideas.net/instagram-line-break-generator</loc>
-    <lastmod>2026-08-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/instagram-line-break-generator" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/es/instagram-line-break-generator</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/instagram-line-break-generator" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/de/instagram-line-break-generator</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/instagram-line-break-generator" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/fr/instagram-line-break-generator</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/instagram-line-break-generator" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/pt/instagram-line-break-generator</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt/instagram-line-break-generator" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/instagram-line-break-generator" />
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://postcraft.100ideas.net/linkedin-text-bold-italic</loc>
-    <lastmod>2026-08-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/linkedin-text-bold-italic" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/es/linkedin-text-bold-italic</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/linkedin-text-bold-italic" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/de/linkedin-text-bold-italic</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/linkedin-text-bold-italic" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/fr/linkedin-text-bold-italic</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/linkedin-text-bold-italic" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/pt/linkedin-text-bold-italic</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt/linkedin-text-bold-italic" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/linkedin-text-bold-italic" />
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://postcraft.100ideas.net/twitter-character-counter</loc>
-    <lastmod>2026-08-10</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/twitter-character-counter" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/es/twitter-character-counter</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/twitter-character-counter" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/de/twitter-character-counter</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/twitter-character-counter" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/fr/twitter-character-counter</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/twitter-character-counter" />
+    <lastmod>2026-08-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://postcraft.100ideas.net/pt/twitter-character-counter</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://postcraft.100ideas.net/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://postcraft.100ideas.net/es/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://postcraft.100ideas.net/de/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://postcraft.100ideas.net/fr/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://postcraft.100ideas.net/pt/twitter-character-counter" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://postcraft.100ideas.net/twitter-character-counter" />
+    <lastmod>2026-08-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

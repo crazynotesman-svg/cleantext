@@ -1,26 +1,12 @@
 import { Eraser, Hash, WrapText } from 'lucide-react'
 import type { CleanAction } from '../../types'
+import { useI18n } from '../../i18n/useI18n'
 
-const ACTIONS: { id: CleanAction; label: string; icon: typeof Hash; hint: string }[] = [
-  {
-    id: 'fixInstagramLineBreaks',
-    label: 'Fix IG LineBreaks',
-    icon: WrapText,
-    hint: 'Append invisible chars so line breaks survive the Instagram paste',
-  },
-  {
-    id: 'cleanHashtags',
-    label: 'Clean Hashtags',
-    icon: Hash,
-    hint: 'Deduplicate hashtags and move them to the end of the post',
-  },
-  {
-    id: 'trimWhitespace',
-    label: 'Trim Whitespace',
-    icon: Eraser,
-    hint: 'Remove trailing spaces and collapse extra blank lines',
-  },
-]
+const ICONS: Record<CleanAction, typeof Hash> = {
+  fixInstagramLineBreaks: WrapText,
+  cleanHashtags: Hash,
+  trimWhitespace: Eraser,
+}
 
 export function QuickActions({
   onAction,
@@ -29,15 +15,35 @@ export function QuickActions({
   onAction: (action: CleanAction) => void
   disabled?: boolean
 }) {
+  const { dict } = useI18n()
+  const actions: { id: CleanAction; label: string; hint: string }[] = [
+    {
+      id: 'fixInstagramLineBreaks',
+      label: dict.ui.actions.fixIg,
+      hint: dict.ui.actions.fixIgHint,
+    },
+    {
+      id: 'cleanHashtags',
+      label: dict.ui.actions.cleanHashtags,
+      hint: dict.ui.actions.cleanHashtagsHint,
+    },
+    {
+      id: 'trimWhitespace',
+      label: dict.ui.actions.trim,
+      hint: dict.ui.actions.trimHint,
+    },
+  ]
+
   return (
     <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
-      {ACTIONS.map((a) => {
-        const Icon = a.icon
+      {actions.map((a) => {
+        const Icon = ICONS[a.id]
         return (
           <button
             key={a.id}
             type="button"
             disabled={disabled}
+            onMouseDown={(e) => e.preventDefault()}
             onClick={() => onAction(a.id)}
             title={a.hint}
             className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2.5 text-sm font-medium text-slate-700 transition hover:border-brand-300 hover:bg-brand-50 hover:text-brand-700 disabled:cursor-not-allowed disabled:opacity-40 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-brand-700 dark:hover:bg-slate-800"

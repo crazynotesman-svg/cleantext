@@ -10,7 +10,6 @@ export const PLATFORMS: readonly PlatformSpec[] = [
     label: 'X / Twitter',
     charLimit: 280,
     foldAt: null,
-    hint: 'Over 280 characters? Split it into a thread.',
     accent: 'slate',
   },
   {
@@ -18,7 +17,6 @@ export const PLATFORMS: readonly PlatformSpec[] = [
     label: 'Instagram',
     charLimit: 2200,
     foldAt: 125,
-    hint: 'Only the first 125 characters show before "more".',
     accent: 'pink',
   },
   {
@@ -26,7 +24,6 @@ export const PLATFORMS: readonly PlatformSpec[] = [
     label: 'LinkedIn',
     charLimit: 3000,
     foldAt: 140,
-    hint: 'Only the first 140 characters show before "see more".',
     accent: 'sky',
   },
 ] as const

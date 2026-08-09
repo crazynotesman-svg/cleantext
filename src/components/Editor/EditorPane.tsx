@@ -5,15 +5,7 @@ import { QuickActions } from './QuickActions'
 import { styleText } from '../../lib/text'
 import type { CleanAction, UnicodeStyle } from '../../types'
 import type { ToastTone } from '../ui/Toast'
-
-const STYLE_LABELS: Record<UnicodeStyle, string> = {
-  bold: 'Bold',
-  italic: 'Italic',
-  boldItalic: 'Bold Italic',
-  monospace: 'Monospace',
-  script: 'Script',
-  normal: 'Normal',
-}
+import { useI18n } from '../../i18n/useI18n'
 
 interface EditorPaneProps {
   value: string
@@ -32,6 +24,7 @@ export function EditorPane({
   highlight,
   tip,
 }: EditorPaneProps) {
+  const { dict } = useI18n()
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   // After a style transform we restore the selection once React re-renders.
   const pendingSelection = useRef<{ start: number; end: number } | null>(null)
@@ -60,10 +53,11 @@ export function EditorPane({
       ? { start, end: start + styled.length }
       : { start: 0, end: styled.length }
     onChange(next)
+    const label = dict.ui.styles[style]
     showToast(
       hasSelection
-        ? `${STYLE_LABELS[style]} applied to selection`
-        : `All text set to ${STYLE_LABELS[style]}`,
+        ? dict.ui.toast.applied(label)
+        : dict.ui.toast.allText(label),
     )
   }
 
@@ -74,10 +68,10 @@ export function EditorPane({
     >
       <h2 id="editor-heading" className="flex items-center gap-2 text-sm font-semibold">
         <Type className="size-4 text-brand-600 dark:text-brand-400" />
-        Editor
+        {dict.ui.editorTitle}
       </h2>
       <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-        Select text, then pick a style. Cleanups apply to the whole post.
+        {dict.ui.editorDesc}
       </p>
 
       <div className="mt-3">

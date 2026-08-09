@@ -10,6 +10,7 @@ import {
 import type { PlatformSpec } from '../../types'
 import { countChars } from '../../lib/text'
 import { CharCounter } from './CharCounter'
+import { useI18n } from '../../i18n/useI18n'
 
 function Avatar({ label, from, to }: { label: string; from: string; to: string }) {
   return (
@@ -22,7 +23,7 @@ function Avatar({ label, from, to }: { label: string; from: string; to: string }
 }
 
 /** Renders the caption, injecting a "See more" divider at the fold point. */
-function Caption({ text, foldAt }: { text: string; foldAt: number | null }) {
+function Caption({ text, foldAt, seeMore }: { text: string; foldAt: number | null; seeMore: string }) {
   if (foldAt === null || countChars(text) <= foldAt) {
     return (
       <p className="whitespace-pre-wrap break-words text-[15px] leading-relaxed">{text}</p>
@@ -36,7 +37,7 @@ function Caption({ text, foldAt }: { text: string; foldAt: number | null }) {
       <p className="whitespace-pre-wrap break-words text-[15px] leading-relaxed">{above}</p>
       <div className="my-2 flex items-center gap-2 text-[11px] font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">
         <span className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
-        See more
+        {seeMore}
         <span className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
       </div>
       <p className="whitespace-pre-wrap break-words text-[15px] leading-relaxed text-slate-500 dark:text-slate-400">
@@ -47,6 +48,8 @@ function Caption({ text, foldAt }: { text: string; foldAt: number | null }) {
 }
 
 export function PlatformCard({ platform, text }: { platform: PlatformSpec; text: string }) {
+  const { dict } = useI18n()
+  const social = dict.ui.social
   const chars = countChars(text)
 
   return (
@@ -64,7 +67,7 @@ export function PlatformCard({ platform, text }: { platform: PlatformSpec; text:
             </div>
           </div>
           <div className="mt-3">
-            <Caption text={text} foldAt={platform.foldAt} />
+            <Caption text={text} foldAt={platform.foldAt} seeMore={dict.ui.seeMore} />
           </div>
           <div className="mt-3 flex max-w-md items-center justify-between text-slate-500 dark:text-slate-400">
             <MessageCircle className="size-4.5" />
@@ -86,7 +89,7 @@ export function PlatformCard({ platform, text }: { platform: PlatformSpec; text:
             <span className="text-sm font-semibold">your.handle</span>
           </div>
           <div className="mt-3">
-            <Caption text={text} foldAt={platform.foldAt} />
+            <Caption text={text} foldAt={platform.foldAt} seeMore={dict.ui.seeMore} />
           </div>
           <div className="mt-3 flex items-center gap-4 text-slate-700 dark:text-slate-300">
             <Heart className="size-5" />
@@ -95,7 +98,7 @@ export function PlatformCard({ platform, text }: { platform: PlatformSpec; text:
             <Bookmark className="size-5 ml-auto" />
           </div>
           <p className="mt-2 text-xs font-semibold text-slate-500 dark:text-slate-400">
-            1,234 likes
+            {social.likes}
           </p>
         </>
       )}
@@ -112,20 +115,20 @@ export function PlatformCard({ platform, text }: { platform: PlatformSpec; text:
             </div>
           </div>
           <div className="mt-3">
-            <Caption text={text} foldAt={platform.foldAt} />
+            <Caption text={text} foldAt={platform.foldAt} seeMore={dict.ui.seeMore} />
           </div>
           <div className="mt-3 flex max-w-sm items-center justify-between border-t border-slate-200 pt-2 text-slate-500 dark:border-slate-700 dark:text-slate-400">
             <span className="flex items-center gap-1.5 text-xs font-medium">
-              <ThumbsUp className="size-4" /> Like
+              <ThumbsUp className="size-4" /> {social.like}
             </span>
             <span className="flex items-center gap-1.5 text-xs font-medium">
-              <MessageCircle className="size-4" /> Comment
+              <MessageCircle className="size-4" /> {social.comment}
             </span>
             <span className="flex items-center gap-1.5 text-xs font-medium">
-              <Repeat2 className="size-4" /> Repost
+              <Repeat2 className="size-4" /> {social.repost}
             </span>
             <span className="flex items-center gap-1.5 text-xs font-medium">
-              <Send className="size-4" /> Send
+              <Send className="size-4" /> {social.send}
             </span>
           </div>
         </>

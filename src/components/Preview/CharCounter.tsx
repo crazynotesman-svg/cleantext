@@ -1,9 +1,13 @@
+import { useI18n } from '../../i18n/useI18n'
+
 interface CharCounterProps {
   chars: number
   limit: number
 }
 
 export function CharCounter({ chars, limit }: CharCounterProps) {
+  const { dict } = useI18n()
+  const locale = dict.ui.numberLocale
   const pct = Math.min(100, (chars / limit) * 100)
   const exceeded = chars > limit
   const near = !exceeded && chars / limit >= 0.8
@@ -22,20 +26,22 @@ export function CharCounter({ chars, limit }: CharCounterProps) {
     <div>
       <div className="flex items-baseline justify-between text-xs">
         <span className={`font-semibold tabular-nums ${textColor}`}>
-          {chars.toLocaleString('en-US')}
+          {chars.toLocaleString(locale)}
           <span className="font-normal text-slate-400 dark:text-slate-500">
-            {' '}/ {limit.toLocaleString('en-US')}
+            {' '}/ {limit.toLocaleString(locale)}
           </span>
         </span>
         {exceeded ? (
           <span className="font-medium text-rose-600 dark:text-rose-400">
-            Exceeded by {(chars - limit).toLocaleString('en-US')} chars
+            {dict.ui.counterExceeded(chars - limit)}
           </span>
         ) : near ? (
-          <span className="font-medium text-amber-600 dark:text-amber-400">Almost full</span>
+          <span className="font-medium text-amber-600 dark:text-amber-400">
+            {dict.ui.counterAlmostFull}
+          </span>
         ) : (
           <span className="text-slate-400 dark:text-slate-500">
-            {(limit - chars).toLocaleString('en-US')} left
+            {dict.ui.counterLeft(limit - chars)}
           </span>
         )}
       </div>

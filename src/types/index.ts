@@ -17,8 +17,6 @@ export interface PlatformSpec {
    * behind a "See more" affordance. `null` when the platform has no fold.
    */
   foldAt: number | null
-  /** Marketing-facing note rendered under the counter. */
-  hint: string
   /** Tailwind accent token used for the tab + badge. */
   accent: string
 }
