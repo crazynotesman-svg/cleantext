@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from 'react'
 import { Header } from './components/layout/Header'
 import { EditorPane } from './components/Editor/EditorPane'
 import { PreviewPane } from './components/Preview/PreviewPane'
+import { FooterSEO } from './components/SEO/FooterSEO'
 import { Toast, type ToastState, type ToastTone } from './components/ui/Toast'
 import { useDarkMode } from './hooks/useDarkMode'
 import { useLocalStorage } from './hooks/useLocalStorage'
@@ -96,9 +97,7 @@ export default function App() {
         </div>
       </main>
 
-      <footer className="border-t border-slate-200 py-6 text-center text-xs text-slate-500 dark:border-slate-800 dark:text-slate-400">
-        PostCraft — 100% client-side. Your text never leaves this browser.
-      </footer>
+      <FooterSEO />
 
       <Toast toast={toast} onDismiss={dismissToast} />
     </div>
