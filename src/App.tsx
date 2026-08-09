@@ -1,16 +1,67 @@
-import { Eraser, PanelsTopLeft, Type } from 'lucide-react'
+import { useCallback, useRef, useState } from 'react'
 import { Header } from './components/layout/Header'
+import { EditorPane } from './components/Editor/EditorPane'
+import { PreviewPane } from './components/Preview/PreviewPane'
+import { Toast, type ToastState, type ToastTone } from './components/ui/Toast'
 import { useDarkMode } from './hooks/useDarkMode'
-import { PLATFORMS } from './lib/platforms'
+import { useLocalStorage } from './hooks/useLocalStorage'
+import { DEFAULT_PLATFORM } from './lib/platforms'
+import { cleanHashtags, fixInstagramLineBreaks, trimWhitespace } from './lib/text'
+import type { CleanAction, PlatformId } from './types'
 
 const REPO_URL = 'https://github.com/crazynotesman-svg/cleantext'
+const DRAFT_KEY = 'postcraft:draft'
+const PLATFORM_KEY = 'postcraft:platform'
 
-/**
- * Step 1 scaffold: verifies Vite + React + TS + Tailwind + Lucide are wired up
- * and locks in the semantic split-screen shell that Steps 2–4 will fill in.
- */
 export default function App() {
   const { isDark, toggle } = useDarkMode()
+  const [text, setText] = useLocalStorage<string>(DRAFT_KEY, '')
+  const [activePlatform, setActivePlatform] = useLocalStorage<PlatformId>(
+    PLATFORM_KEY,
+    DEFAULT_PLATFORM,
+  )
+
+  const [toast, setToast] = useState<ToastState | null>(null)
+  const toastId = useRef(0)
+  const showToast = useCallback((message: string, tone: ToastTone = 'success') => {
+    toastId.current += 1
+    setToast({ id: toastId.current, message, tone })
+  }, [])
+  const dismissToast = useCallback(() => setToast(null), [])
+
+  const [copied, setCopied] = useState(false)
+
+  const handleAction = useCallback(
+    (action: CleanAction) => {
+      if (action === 'fixInstagramLineBreaks') {
+        setText((prev) => fixInstagramLineBreaks(prev))
+        showToast('Instagram line breaks fixed')
+      } else if (action === 'trimWhitespace') {
+        setText((prev) => trimWhitespace(prev))
+        showToast('Whitespace trimmed')
+      } else {
+        const result = cleanHashtags(text)
+        setText(result.text)
+        if (result.hashtags.length === 0) showToast('No hashtags found', 'info')
+        else
+          showToast(
+            `${result.hashtags.length} hashtag${result.hashtags.length > 1 ? 's' : ''} cleaned & moved to end`,
+          )
+      }
+    },
+    [text, setText, showToast],
+  )
+
+  const handleCopy = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      showToast('Copied to clipboard!', 'success')
+      window.setTimeout(() => setCopied(false), 1600)
+    } catch {
+      showToast('Copy failed — select and copy manually', 'error')
+    }
+  }, [text, showToast])
 
   return (
     <div className="flex min-h-dvh flex-col">
@@ -29,75 +80,27 @@ export default function App() {
         </div>
 
         <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
-          {/* LEFT PANE — interactive editor (Step 3) */}
-          <section
-            aria-labelledby="editor-heading"
-            className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900"
-          >
-            <h2
-              id="editor-heading"
-              className="flex items-center gap-2 text-sm font-semibold"
-            >
-              <Type className="size-4 text-brand-600 dark:text-brand-400" />
-              Editor
-            </h2>
-            <Placeholder
-              icon={<Eraser className="size-5" />}
-              label="Stylizer toolbar, textarea and cleaning actions land here in Step 3."
-            />
-          </section>
-
-          {/* RIGHT PANE — live multi-platform preview (Step 3) */}
-          <aside
-            aria-labelledby="preview-heading"
-            className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900"
-          >
-            <h2
-              id="preview-heading"
-              className="flex items-center gap-2 text-sm font-semibold"
-            >
-              <PanelsTopLeft className="size-4 text-brand-600 dark:text-brand-400" />
-              Live preview
-            </h2>
-            <ul className="mt-3 flex flex-wrap gap-2">
-              {PLATFORMS.map((platform) => (
-                <li
-                  key={platform.id}
-                  className="rounded-full border border-slate-200 px-3 py-1 text-xs font-medium text-slate-600 dark:border-slate-700 dark:text-slate-300"
-                >
-                  {platform.label}
-                  <span className="ml-1.5 text-slate-400 dark:text-slate-500">
-                    {platform.charLimit.toLocaleString('en-US')}
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <Placeholder
-              icon={<PanelsTopLeft className="size-5" />}
-              label="Feed cards, counters and the See-more fold marker land here in Step 3."
-            />
-          </aside>
+          <EditorPane
+            value={text}
+            onChange={setText}
+            onAction={handleAction}
+            showToast={showToast}
+          />
+          <PreviewPane
+            text={text}
+            activePlatform={activePlatform}
+            onPlatformChange={setActivePlatform}
+            onCopy={handleCopy}
+            copied={copied}
+          />
         </div>
       </main>
 
       <footer className="border-t border-slate-200 py-6 text-center text-xs text-slate-500 dark:border-slate-800 dark:text-slate-400">
         PostCraft — 100% client-side. Your text never leaves this browser.
       </footer>
-    </div>
-  )
-}
 
-function Placeholder({
-  icon,
-  label,
-}: {
-  icon: React.ReactNode
-  label: string
-}) {
-  return (
-    <div className="mt-3 flex min-h-56 flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-slate-300 px-6 text-center text-xs text-slate-500 dark:border-slate-700 dark:text-slate-400">
-      <span className="text-slate-400 dark:text-slate-500">{icon}</span>
-      {label}
+      <Toast toast={toast} onDismiss={dismissToast} />
     </div>
   )
 }
