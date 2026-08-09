@@ -1,0 +1,51 @@
+@import 'tailwindcss';
+
+/* Class-based dark mode (Tailwind v4 syntax) — toggled on <html class="dark"> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono',
+    monospace;
+
+  /* Brand palette */
+  --color-brand-50: oklch(0.971 0.014 254.6);
+  --color-brand-100: oklch(0.932 0.032 255.6);
+  --color-brand-200: oklch(0.882 0.059 254.1);
+  --color-brand-300: oklch(0.809 0.105 251.8);
+  --color-brand-400: oklch(0.707 0.165 254.6);
+  --color-brand-500: oklch(0.623 0.214 259.8);
+  --color-brand-600: oklch(0.546 0.245 262.9);
+  --color-brand-700: oklch(0.488 0.243 264.4);
+  --color-brand-800: oklch(0.424 0.199 265.6);
+  --color-brand-900: oklch(0.379 0.146 265.5);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-slate-50 text-slate-900 antialiased;
+    @apply dark:bg-slate-950 dark:text-slate-100;
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    @apply bg-brand-500/25;
+  }
+}
+
+@layer utilities {
+  /* Thin scrollbars for editor / preview panes */
+  .scrollbar-slim {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in oklab, currentColor 25%, transparent)
+      transparent;
+  }
+}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>Free Social Media Post Formatter &amp; Hashtag Cleaner | PostCraft</title>
+    <meta
+      name="description"
+      content="Format bold/italic text for LinkedIn &amp; X, fix Instagram line breaks, clean hashtags, and preview character limits online for free."
+    />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Full SEO meta, Open Graph and JSON-LD schema are injected in Step 4 -->
+
+    <script>
+      // Apply the stored theme before first paint to avoid a light/dark flash.
+      ;(function () {
+        try {
+          var stored = localStorage.getItem('postcraft:theme')
+          var theme = stored
+            ? JSON.parse(stored)
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light'
+          if (theme === 'dark') document.documentElement.classList.add('dark')
+          document.documentElement.style.colorScheme = theme
+        } catch (e) {}
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
