@@ -2,7 +2,9 @@ import { useLayoutEffect, useRef } from 'react'
 import { Info, Type } from 'lucide-react'
 import { StyleToolbar } from './StyleToolbar'
 import { QuickActions } from './QuickActions'
+import { SymbolPicker } from './SymbolPicker'
 import { styleText } from '../../lib/text'
+import { insertAt } from '../../lib/symbols'
 import type { CleanAction, UnicodeStyle } from '../../types'
 import type { ToastTone } from '../ui/Toast'
 import { useI18n } from '../../i18n/useI18n'
@@ -79,6 +81,18 @@ export function EditorPane({
     requestAnimationFrame(() => textareaRef.current?.focus())
   }
 
+  // Insert a symbol/emoji at the current caret (or replacing the selection).
+  // Uses insertAt so a stale/reversed selection can never throw.
+  const handleInsertSymbol = (symbol: string) => {
+    const ta = textareaRef.current
+    const len = value.length
+    const start = ta?.selectionStart ?? len
+    const end = ta?.selectionEnd ?? len
+    const { text: next, caret } = insertAt(value, symbol, start, end)
+    pendingSelection.current = { start: caret, end: caret }
+    onChange(next)
+  }
+
   return (
     <section
       aria-labelledby="editor-heading"
@@ -94,6 +108,10 @@ export function EditorPane({
 
       <div className="mt-3">
         <StyleToolbar onStyle={handleStyle} highlight={highlight} />
+      </div>
+
+      <div className="mt-3">
+        <SymbolPicker onInsert={handleInsertSymbol} />
       </div>
 
       {tip && (

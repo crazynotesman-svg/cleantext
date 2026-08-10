@@ -147,6 +147,44 @@ export const en: Dict = {
     editorTitle: 'Editor',
     editorDesc: 'Select text, then pick a style. Cleanups apply to the whole post.',
     selectThenStyle: 'Select text, then pick a style.',
+    tools: {
+      studio: 'Font Studio',
+      thread: 'Thread & Line',
+    },
+    symbols: {
+      title: 'Symbols & Emoji',
+      toggle: 'Insert symbols and emoji',
+      categories: {
+        numbers: 'Numbers',
+        lists: 'List markers',
+        dividers: 'Dividers',
+        vibe: 'Vibe emoji',
+      },
+      close: 'Close',
+    },
+    thread: {
+      title: 'Thread Splitter & Line Break Fixer',
+      subtitle:
+        'Split long posts into numbered threads and keep your line breaks on Instagram & Threads.',
+      inputPlaceholder: 'Paste or write your long post here…',
+      limitLabel: 'Character limit',
+      presets: {
+        twitter: 'X / Twitter · 280',
+        threads: 'Threads · 500',
+        custom: 'Custom',
+      },
+      split: 'Split into thread',
+      fixBreaks: 'Fix line breaks',
+      clear: 'Clear',
+      partsHeading: 'Thread preview',
+      cardCopy: 'Copy',
+      cardCopied: 'Copied!',
+      charsOf: (n, total) =>
+        `${n.toLocaleString('en-US')} / ${total.toLocaleString('en-US')} chars`,
+      empty: 'Enter some text and choose a limit to split it into a thread.',
+      overLimit: (n) => `Over limit by ${n.toLocaleString('en-US')} characters`,
+      fit: 'Fits within the limit',
+    },
     livePreview: 'Live preview',
     copy: 'Copy Clean Text',
     copied: 'Copied!',
@@ -184,6 +222,8 @@ export const en: Dict = {
       copied: 'Copied to clipboard!',
       copyFailed: 'Copy failed — select and copy manually',
       cleared: 'Editor cleared',
+      lineBreaksFixed: 'Line breaks fixed — blank lines will survive the paste',
+      threadSplit: (n) => `Split into ${n} part${n > 1 ? 's' : ''}`,
     },
     seeMore: 'See more',
     social: {

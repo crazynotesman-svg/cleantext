@@ -144,6 +144,44 @@ export const fr: Dict = {
     editorTitle: 'Éditeur',
     editorDesc: 'Sélectionnez du texte, puis choisissez un style. Les nettoyages s’appliquent à tout le post.',
     selectThenStyle: 'Sélectionnez du texte, puis choisissez un style.',
+    tools: {
+      studio: 'Studio de style',
+      thread: 'Fils & sauts',
+    },
+    symbols: {
+      title: 'Symboles & Emoji',
+      toggle: 'Insérer symboles et emoji',
+      categories: {
+        numbers: 'Chiffres',
+        lists: 'Puces',
+        dividers: 'Séparateurs',
+        vibe: 'Emoji d’ambiance',
+      },
+      close: 'Fermer',
+    },
+    thread: {
+      title: 'Découpeur de fils & correcteur de sauts',
+      subtitle:
+        'Découpe les longs posts en fils numérotés et conserve tes sauts de ligne sur Instagram et Threads.',
+      inputPlaceholder: 'Colle ou écris ton long post ici…',
+      limitLabel: 'Limite de caractères',
+      presets: {
+        twitter: 'X / Twitter · 280',
+        threads: 'Threads · 500',
+        custom: 'Personnalisé',
+      },
+      split: 'Découper en fil',
+      fixBreaks: 'Corriger les sauts',
+      clear: 'Effacer',
+      partsHeading: 'Aperçu du fil',
+      cardCopy: 'Copier',
+      cardCopied: 'Copié !',
+      charsOf: (n, total) =>
+        `${n.toLocaleString('fr-FR')} / ${total.toLocaleString('fr-FR')} caractères`,
+      empty: 'Saisis du texte et choisis une limite pour le découper en fil.',
+      overLimit: (n) => `Dépasse la limite de ${n.toLocaleString('fr-FR')} caractères`,
+      fit: 'Dans la limite',
+    },
     livePreview: 'Aperçu en direct',
     copy: 'Copier le texte propre',
     copied: 'Copié !',
@@ -178,6 +216,8 @@ export const fr: Dict = {
       trimmed: 'Espaces supprimés',
       noHashtags: 'Aucun hashtag trouvé',
       cleared: 'Éditeur vidé',
+      lineBreaksFixed: 'Sauts corrigés — les lignes vides seront conservées au collage',
+      threadSplit: (n) => `Découpé en ${n} partie${n > 1 ? 's' : ''}`,
       hashtagsCleaned: (n) =>
         `${n} hashtag${n > 1 ? 's' : ''} nettoyé${n > 1 ? 's' : ''} et déplacé${n > 1 ? 's' : ''} à la fin`,
       copied: 'Copié dans le presse-papiers !',

@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { Header } from './components/layout/Header'
 import { EditorPane } from './components/Editor/EditorPane'
 import { PreviewPane } from './components/Preview/PreviewPane'
+import { ThreadSplitter } from './components/ThreadSplitter'
 import { FooterSEO } from './components/SEO/FooterSEO'
 import { Toast, type ToastState, type ToastTone } from './components/ui/Toast'
 import { useDarkMode } from './hooks/useDarkMode'
@@ -57,6 +58,11 @@ export default function App() {
 
   const [copied, setCopied] = useState(false)
 
+  // Creator Suite tool tabs. Client-side only: the SEO landing pages still
+  // server-render the studio (editor) so crawlers see the optimised H1/intro;
+  // the thread tool is a SPA-only companion for the current session.
+  const [activeTool, setActiveTool] = useState<'studio' | 'thread'>('studio')
+
   const handleAction = useCallback(
     (action: CleanAction) => {
       if (action === 'fixInstagramLineBreaks') {
@@ -92,32 +98,59 @@ export default function App() {
         <Header isDark={isDark} onToggleTheme={toggle} repoUrl={REPO_URL} />
 
         <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 sm:px-6 sm:py-8">
-          <div className="mb-6">
-            <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-              {seo.h1}
-            </h1>
-            <p className="mt-2 max-w-2xl text-sm text-slate-600 dark:text-slate-400">
-              {seo.intro}
-            </p>
-          </div>
+          <nav
+            aria-label="PostCraft tools"
+            className="mb-5 flex gap-1 rounded-xl border border-slate-200 bg-slate-100 p-1 dark:border-slate-800 dark:bg-slate-900"
+          >
+            {(['studio', 'thread'] as const).map((tool) => (
+              <button
+                key={tool}
+                type="button"
+                onClick={() => setActiveTool(tool)}
+                aria-pressed={activeTool === tool}
+                className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium transition ${
+                  activeTool === tool
+                    ? 'bg-white text-brand-700 shadow-sm dark:bg-slate-800 dark:text-brand-300'
+                    : 'text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200'
+                }`}
+              >
+                {dict.ui.tools[tool]}
+              </button>
+            ))}
+          </nav>
 
-          <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
-            <EditorPane
-              value={text}
-              onChange={setText}
-              onAction={handleAction}
-              showToast={showToast}
-              highlight={seo.highlight}
-              tip={seo.tip}
-            />
-            <PreviewPane
-              text={text}
-              activePlatform={activePlatform}
-              onPlatformChange={setActivePlatform}
-              onCopy={handleCopy}
-              copied={copied}
-            />
-          </div>
+          {activeTool === 'studio' ? (
+            <>
+              <div className="mb-6">
+                <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
+                  {seo.h1}
+                </h1>
+                <p className="mt-2 max-w-2xl text-sm text-slate-600 dark:text-slate-400">
+                  {seo.intro}
+                </p>
+              </div>
+
+              <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
+                <EditorPane
+                  value={text}
+                  onChange={setText}
+                  onAction={handleAction}
+                  showToast={showToast}
+                  highlight={seo.highlight}
+                  tip={seo.tip}
+                />
+                <PreviewPane
+                  text={text}
+                  activePlatform={activePlatform}
+                  onPlatformChange={setActivePlatform}
+                  onCopy={handleCopy}
+                  copied={copied}
+                />
+              </div>
+            </>
+          ) : (
+            <ThreadSplitter showToast={showToast} />
+          )}
         </main>
 
         <FooterSEO faqs={seo.faqs} />

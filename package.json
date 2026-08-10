@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "test": "node --experimental-strip-types src/lib/text.test.ts"
+    "test": "node --experimental-strip-types src/lib/text.test.ts && node --experimental-strip-types src/lib/thread.test.ts && node --experimental-strip-types src/lib/symbols.test.ts"
   },
   "dependencies": {
     "lucide-react": "^1.31.0",

@@ -144,6 +144,44 @@ export const de: Dict = {
     editorTitle: 'Editor',
     editorDesc: 'Text auswählen, dann einen Stil wählen. Bereinigungen gelten für den ganzen Beitrag.',
     selectThenStyle: 'Text auswählen und einen Stil wählen.',
+    tools: {
+      studio: 'Schriftstudio',
+      thread: 'Thread & Zeilen',
+    },
+    symbols: {
+      title: 'Symbole & Emoji',
+      toggle: 'Symbole und Emoji einfügen',
+      categories: {
+        numbers: 'Zahlen',
+        lists: 'Aufzählungen',
+        dividers: 'Trenner',
+        vibe: 'Stimmungs-Emoji',
+      },
+      close: 'Schließen',
+    },
+    thread: {
+      title: 'Thread-Splitter & Zeilenfixer',
+      subtitle:
+        'Teile lange Beiträge in nummerierte Threads und behalte deine Zeilenumbrüche auf Instagram & Threads.',
+      inputPlaceholder: 'Füge deinen langen Beitrag hier ein oder schreibe ihn…',
+      limitLabel: 'Zeichenlimit',
+      presets: {
+        twitter: 'X / Twitter · 280',
+        threads: 'Threads · 500',
+        custom: 'Benutzerdefiniert',
+      },
+      split: 'In Thread teilen',
+      fixBreaks: 'Zeilenumbrüche fixen',
+      clear: 'Leeren',
+      partsHeading: 'Thread-Vorschau',
+      cardCopy: 'Kopieren',
+      cardCopied: 'Kopiert!',
+      charsOf: (n, total) =>
+        `${n.toLocaleString('de-DE')} / ${total.toLocaleString('de-DE')} Zeichen`,
+      empty: 'Gib Text ein und wähle ein Limit, um ihn in einen Thread zu teilen.',
+      overLimit: (n) => `Limit um ${n.toLocaleString('de-DE')} Zeichen überschritten`,
+      fit: 'Innerhalb des Limits',
+    },
     livePreview: 'Live-Vorschau',
     copy: 'Bereinigten Text kopieren',
     copied: 'Kopiert!',
@@ -178,6 +216,8 @@ export const de: Dict = {
       trimmed: 'Leerzeichen entfernt',
       noHashtags: 'Keine Hashtags gefunden',
       cleared: 'Editor geleert',
+      lineBreaksFixed: 'Zeilenumbrüche gefixt — leere Zeilen bleiben beim Einfügen erhalten',
+      threadSplit: (n) => `In ${n} Teil${n > 1 ? 'e' : ''} geteilt`,
       hashtagsCleaned: (n) =>
         `${n} Hashtag${n > 1 ? 's' : ''} bereinigt und ans Ende verschoben`,
       copied: 'In Zwischenablage kopiert!',

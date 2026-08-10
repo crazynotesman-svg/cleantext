@@ -43,6 +43,51 @@ export interface UiDict {
   editorDesc: string
   /** Editor helper line above the textarea. */
   selectThenStyle: string
+  /** Top-level tool switcher labels (Creator Suite navigation). */
+  tools: {
+    studio: string
+    thread: string
+  }
+  /** Symbol & emoji picker UI. */
+  symbols: {
+    title: string
+    /** aria-label / tooltip for the trigger button. */
+    toggle: string
+    categories: {
+      numbers: string
+      lists: string
+      dividers: string
+      vibe: string
+    }
+    /** aria-label for the close (×) button. */
+    close: string
+  }
+  /** Thread Splitter + Line Break Fixer tool UI. */
+  thread: {
+    title: string
+    subtitle: string
+    inputPlaceholder: string
+    limitLabel: string
+    presets: {
+      twitter: string
+      threads: string
+      custom: string
+    }
+    split: string
+    fixBreaks: string
+    clear: string
+    partsHeading: string
+    cardCopy: string
+    cardCopied: string
+    /** Per-card char count, e.g. "120 / 280 chars". */
+    charsOf: (n: number, total: number) => string
+    /** Shown before the first split. */
+    empty: string
+    /** Per-card message when that part exceeds the limit by n chars. */
+    overLimit: (n: number) => string
+    /** Per-card message when the part fits. */
+    fit: string
+  }
   /** Live preview section heading. */
   livePreview: string
   /** Copy button label (idle). */
@@ -79,6 +124,10 @@ export interface UiDict {
     copyFailed: string
     /** Confirmation after clearing the editor. */
     cleared: string
+    /** After fixing line breaks in the thread tool. */
+    lineBreaksFixed: string
+    /** After splitting a post into a thread of n parts. */
+    threadSplit: (n: number) => string
   }
   /** "See more" divider label in the preview card. */
   seeMore: string

@@ -144,6 +144,44 @@ export const pt: Dict = {
     editorTitle: 'Editor',
     editorDesc: 'Selecione o texto e escolha um estilo. As limpezas se aplicam a todo o post.',
     selectThenStyle: 'Selecione o texto e escolha um estilo.',
+    tools: {
+      studio: 'Estúdio de fontes',
+      thread: 'Threads & linhas',
+    },
+    symbols: {
+      title: 'Símbolos e emoji',
+      toggle: 'Inserir símbolos e emoji',
+      categories: {
+        numbers: 'Números',
+        lists: 'Marcadores',
+        dividers: 'Separadores',
+        vibe: 'Emoji de vibe',
+      },
+      close: 'Fechar',
+    },
+    thread: {
+      title: 'Divisor de threads e corretor de quebras',
+      subtitle:
+        'Divida posts longos em threads numeradas e mantenha suas quebras de linha no Instagram e Threads.',
+      inputPlaceholder: 'Cole ou escreva seu post longo aqui…',
+      limitLabel: 'Limite de caracteres',
+      presets: {
+        twitter: 'X / Twitter · 280',
+        threads: 'Threads · 500',
+        custom: 'Personalizado',
+      },
+      split: 'Dividir em thread',
+      fixBreaks: 'Corrigir quebras',
+      clear: 'Limpar',
+      partsHeading: 'Pré-visualização do thread',
+      cardCopy: 'Copiar',
+      cardCopied: 'Copiado!',
+      charsOf: (n, total) =>
+        `${n.toLocaleString('pt-BR')} / ${total.toLocaleString('pt-BR')} caracteres`,
+      empty: 'Digite um texto e escolha um limite para dividi-lo em um thread.',
+      overLimit: (n) => `Acima do limite em ${n.toLocaleString('pt-BR')} caracteres`,
+      fit: 'Dentro do limite',
+    },
     livePreview: 'Pré-visualização',
     copy: 'Copiar texto limpo',
     copied: 'Copiado!',
@@ -178,6 +216,8 @@ export const pt: Dict = {
       trimmed: 'Espaços removidos',
       noHashtags: 'Nenhuma hashtag encontrada',
       cleared: 'Editor limpo',
+      lineBreaksFixed: 'Quebras corrigidas — linhas vazias serão mantidas ao colar',
+      threadSplit: (n) => `Dividido em ${n} parte${n > 1 ? 's' : ''}`,
       hashtagsCleaned: (n) =>
         `${n} hashtag${n > 1 ? 's' : ''} limpa${n > 1 ? 's' : ''} e movida${n > 1 ? 's' : ''} para o final`,
       copied: 'Copiado para a área de transferência!',
