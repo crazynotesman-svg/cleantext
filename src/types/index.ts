@@ -21,6 +21,14 @@ export interface PlatformSpec {
   accent: string
 }
 
+/**
+ * Creator Suite tools shown in the top-level tab switcher.
+ *  - studio: Unicode font studio (editor + platform preview)
+ *  - thread: thread splitter + line-break fixer
+ *  - quote:  quote card generator (PNG export)
+ */
+export type ToolId = 'studio' | 'thread' | 'quote'
+
 /** The Unicode "font" styles offered by the stylizer toolbar. */
 export type UnicodeStyle =
   | 'bold'

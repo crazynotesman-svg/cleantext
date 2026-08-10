@@ -84,6 +84,63 @@ const twitterFaqs: FaqItem[] = [
   privacy,
 ]
 
+const threadFaqs: FaqItem[] = [
+  {
+    question: 'Comment découper un long post en fil Twitter / X ?',
+    answer:
+      'Collez votre brouillon dans le découpeur de fils, choisissez le préréglage X · 280 puis cliquez sur « Découper en fil ». PostCraft regroupe votre texte dans les plus grands blocs qui tiennent dans la limite et ajoute un compteur (1/5), (2/5) à chacun. Copiez les cartes dans l’ordre et publiez-les en réponses pour construire le fil.',
+  },
+  {
+    question: 'Où le découpeur coupe-t-il mon texte ?',
+    answer:
+      'Toujours à une frontière naturelle : d’abord les paragraphes, puis les fins de phrase (. ! ?) et seulement ensuite les espaces entre les mots. Un tweet n’est jamais coupé au milieu d’un mot, donc chaque partie se lit comme une idée complète.',
+  },
+  {
+    question: 'Est-ce que ça marche pour Threads, Bluesky ou une limite personnalisée ?',
+    answer:
+      'Oui. Passez au préréglage Threads · 500 pour Meta Threads, ou choisissez Personnalisé et saisissez la limite de votre choix : 300 pour Bluesky, 3 000 pour LinkedIn, ou la vôtre. La numérotation et le compteur de chaque carte se mettent à jour instantanément.',
+  },
+  privacy,
+]
+
+const quoteFaqs: FaqItem[] = [
+  {
+    question: 'Comment transformer une citation en image ?',
+    answer:
+      'Saisissez ou collez votre phrase dans l’outil de carte, choisissez l’un des quatre styles visuels, sélectionnez un format puis cliquez sur « Télécharger le PNG ». La carte se dessine en direct : l’aperçu correspond exactement au fichier enregistré.',
+  },
+  {
+    question: 'Quelle taille pour une carte Instagram ou Xiaohongshu ?',
+    answer:
+      'Utilisez le 4:5 (1080 × 1350). C’est le format le plus haut affiché sans recadrage par les fils Instagram et Xiaohongshu, donc celui qui occupe le plus d’écran. Le 1:1 (1080 × 1080) convient au post carré classique, et le 16:9 (1920 × 1080) à X, LinkedIn ou un en-tête de blog.',
+  },
+  {
+    question: 'Le PNG exporté est-il en haute résolution ?',
+    answer:
+      'Oui. Les cartes sont exportées à leur taille réelle en pixels — 1080 × 1080, 1080 × 1350 ou 1920 × 1080 — c’est-à-dire la résolution d’envoi native des grandes plateformes. Le texte reste net au lieu d’être recompressé depuis un petit aperçu.',
+  },
+  privacy,
+]
+
+const breakerFaqs: FaqItem[] = [
+  {
+    question: 'Comment ajouter des sauts de ligne à une bio ou une légende Instagram ?',
+    answer:
+      'Écrivez votre texte avec les lignes vides exactement où vous les voulez, cliquez sur « Corriger les sauts de ligne », puis collez le résultat dans Instagram. PostCraft insère une espace sans chasse (U+200B) invisible sur chaque ligne vide, ce qui empêche Instagram de la supprimer.',
+  },
+  {
+    question: 'Pourquoi Instagram supprime-t-il mes lignes vides au collage ?',
+    answer:
+      'Instagram supprime les espaces en fin de ligne, et une ligne vide n’est faite que d’espaces : elle disparaît et vos paragraphes fusionnent en un seul bloc. Un caractère invisible rend la ligne « non vide » et l’espacement est conservé.',
+  },
+  {
+    question: 'Est-ce que ça fonctionne dans les commentaires et sur Threads ?',
+    answer:
+      'Oui. La même technique fonctionne dans les commentaires Instagram, le champ bio, les publications Threads et la plupart des applis qui suppriment les lignes vides. Collez le texte corrigé partout où votre mise en page disparaît d’habitude.',
+  },
+  privacy,
+]
+
 const pages: Record<PageKey, PageSeo> = {
   root: {
     title: 'Formateur de publications réseaux sociaux & nettoyeur de hashtags gratuit | PostCraft',
@@ -132,6 +189,42 @@ const pages: Record<PageKey, PageSeo> = {
     tip: 'Astuce : restez sous 280 caractères, ou divisez une longue publication en un fil numéroté pour un meilleur reach.',
     faqs: twitterFaqs,
   },
+  threadSplitter: {
+    title: 'Découpeur de fils Twitter / X — Diviser un long post gratuitement | PostCraft',
+    description:
+      'Découpeur de fils gratuit. Collez un long post et découpez-le en tweets numérotés de 280 caractères qui se lisent naturellement. Threads 500 et limites personnalisées pris en charge.',
+    keywords:
+      'decoupeur de fils twitter, generateur de thread twitter, diviser un long texte en tweets, creer un fil x, decouper post threads',
+    h1: 'Découpeur de fils Twitter / X',
+    intro:
+      'Collez un long post et découpez-le en un fil X numéroté en un clic. PostCraft coupe aux frontières de paragraphe et de phrase, pour que chaque tweet reste une idée complète.',
+    tip: 'Astuce : choisissez X · 280 pour Twitter ou Threads · 500 pour Meta Threads, puis copiez les cartes dans l’ordre.',
+    faqs: threadFaqs,
+  },
+  quoteCard: {
+    title: 'Générateur de cartes de citation — Texte en image PNG gratuit | PostCraft',
+    description:
+      'Générateur de cartes de citation gratuit. Transformez une phrase en PNG prêt à partager avec les styles sombre, Xiaohongshu, dégradé ou papier en 1:1, 4:5 ou 16:9.',
+    keywords:
+      'generateur de carte de citation, transformer texte en image, creer citation instagram, generateur carte xiaohongshu, telecharger citation png',
+    h1: 'Générateur de cartes de citation',
+    intro:
+      'Transformez une phrase en image prête à partager. Choisissez un style, un format 1:1, 4:5 ou 16:9, et téléchargez un PNG haute résolution — tout est généré dans votre navigateur.',
+    tip: 'Astuce : le 4:5 occupe le plus d’écran dans les fils Instagram et Xiaohongshu ; le 16:9 convient à X et LinkedIn.',
+    faqs: quoteFaqs,
+  },
+  igBreaker: {
+    title: 'Sauts de ligne Instagram — Conservez l’espacement des légendes | PostCraft',
+    description:
+      'Outil gratuit de sauts de ligne Instagram. Ajoutez de vrais espacements de paragraphe dans vos légendes, bios et commentaires pour que vos lignes vides survivent au collage.',
+    keywords:
+      'saut de ligne instagram, saut de ligne bio instagram, ajouter des espaces legende instagram, espacement paragraphe instagram, saut de ligne threads',
+    h1: 'Outil de sauts de ligne Instagram',
+    intro:
+      'Découpez votre légende en paragraphes nets et gardez-les. PostCraft ajoute des caractères d’espacement invisibles pour qu’Instagram, Threads et le champ bio cessent de supprimer vos lignes vides.',
+    tip: 'Astuce : placez les lignes vides voulues, cliquez sur « Corriger les sauts de ligne », puis collez directement dans Instagram.',
+    faqs: breakerFaqs,
+  },
 }
 
 export const fr: Dict = {
@@ -147,6 +240,7 @@ export const fr: Dict = {
     tools: {
       studio: 'Studio de style',
       thread: 'Fils & sauts',
+      quote: 'Carte de citation',
     },
     symbols: {
       title: 'Symboles & Emoji',
@@ -181,6 +275,36 @@ export const fr: Dict = {
       empty: 'Saisis du texte et choisis une limite pour le découper en fil.',
       overLimit: (n) => `Dépasse la limite de ${n.toLocaleString('fr-FR')} caractères`,
       fit: 'Dans la limite',
+    },
+    quote: {
+      title: 'Générateur de cartes de citation',
+      subtitle:
+        'Transformez une phrase en PNG prêt à partager — 4 styles, 3 formats, sans inscription.',
+      inputPlaceholder: 'Écrivez ou collez la phrase à afficher sur la carte…',
+      sample: 'Écrivez le post que vous auriez aimé lire.',
+      authorLabel: 'Auteur',
+      authorPlaceholder: 'Votre nom ou @pseudo',
+      charsLeft: (n) => `${n.toLocaleString('fr-FR')} restants`,
+      presetLabel: 'Style visuel',
+      presets: {
+        dark: 'Sombre minimaliste',
+        xiaohongshu: 'Xiaohongshu viral',
+        gradient: 'Dégradé moderne',
+        paper: 'Papier vintage',
+      },
+      ratioLabel: 'Format',
+      ratios: {
+        square: 'Carré · 1:1',
+        portrait: 'Fil · 4:5',
+        landscape: 'Paysage · 16:9',
+      },
+      download: 'Télécharger le PNG',
+      downloading: 'Génération…',
+      clear: 'Effacer',
+      previewLabel: 'Aperçu de la carte',
+      sizeNote: (w, h) => `Export en ${w} × ${h} px`,
+      exportHint:
+        'Généré et enregistré entièrement dans votre navigateur — l’image n’est jamais envoyée.',
     },
     livePreview: 'Aperçu en direct',
     copy: 'Copier le texte propre',
@@ -218,6 +342,8 @@ export const fr: Dict = {
       cleared: 'Éditeur vidé',
       lineBreaksFixed: 'Sauts corrigés — les lignes vides seront conservées au collage',
       threadSplit: (n) => `Découpé en ${n} partie${n > 1 ? 's' : ''}`,
+      imageDownloaded: 'Carte de citation téléchargée',
+      imageFailed: 'Échec de l’export — réessayez ou raccourcissez la citation',
       hashtagsCleaned: (n) =>
         `${n} hashtag${n > 1 ? 's' : ''} nettoyé${n > 1 ? 's' : ''} et déplacé${n > 1 ? 's' : ''} à la fin`,
       copied: 'Copié dans le presse-papiers !',

@@ -84,6 +84,63 @@ const twitterFaqs: FaqItem[] = [
   privacy,
 ]
 
+const threadFaqs: FaqItem[] = [
+  {
+    question: 'Como divido um post longo em uma thread do Twitter / X?',
+    answer:
+      'Cole seu rascunho no divisor de threads, escolha a predefinição X · 280 e clique em "Dividir em thread". O PostCraft agrupa o texto nos maiores blocos que cabem no limite e adiciona um contador (1/5), (2/5) a cada um. Copie os cards na ordem e publique-os como respostas para montar a thread.',
+  },
+  {
+    question: 'Onde o divisor corta o meu texto?',
+    answer:
+      'Sempre em uma fronteira natural: primeiro nas quebras de parágrafo, depois no fim das frases (. ! ?) e só então entre palavras. Um tweet nunca é cortado no meio de uma palavra, então cada parte continua sendo uma ideia completa.',
+  },
+  {
+    question: 'Funciona no Threads, no Bluesky ou com um limite personalizado?',
+    answer:
+      'Sim. Mude a predefinição para Threads · 500 no Meta Threads, ou escolha Personalizado e digite o limite que precisar: 300 para o Bluesky, 3.000 para o LinkedIn ou o seu próprio. A numeração e o contador de cada card se atualizam na hora.',
+  },
+  privacy,
+]
+
+const quoteFaqs: FaqItem[] = [
+  {
+    question: 'Como transformo uma frase em imagem?',
+    answer:
+      'Digite ou cole sua frase na ferramenta de cards, escolha um dos quatro estilos visuais, selecione uma proporção e clique em "Baixar PNG". O card é renderizado ao vivo enquanto você digita, então a prévia é exatamente o que será salvo.',
+  },
+  {
+    question: 'Qual o tamanho ideal de um card para Instagram ou Xiaohongshu?',
+    answer:
+      'Use 4:5 (1080 × 1350). É a proporção mais alta que os feeds do Instagram e do Xiaohongshu exibem sem cortar, ocupando mais tela. Escolha 1:1 (1080 × 1080) para o post quadrado clássico e 16:9 (1920 × 1080) para X, LinkedIn ou capa de blog.',
+  },
+  {
+    question: 'O PNG exportado é de alta resolução?',
+    answer:
+      'Sim. Os cards são exportados no tamanho real em pixels — 1080 × 1080, 1080 × 1350 ou 1920 × 1080 —, que é a resolução nativa de upload das principais plataformas. O texto continua nítido em vez de ser recomprimido a partir de uma prévia pequena.',
+  },
+  privacy,
+]
+
+const breakerFaqs: FaqItem[] = [
+  {
+    question: 'Como adiciono quebras de linha na bio ou na legenda do Instagram?',
+    answer:
+      'Escreva seu texto com as linhas em branco exatamente onde você quer, clique em "Corrigir quebras de linha" e cole o resultado no Instagram. O PostCraft insere um espaço de largura zero (U+200B) invisível em cada linha vazia, impedindo que o Instagram a remova.',
+  },
+  {
+    question: 'Por que o Instagram apaga minhas linhas em branco ao colar?',
+    answer:
+      'O Instagram remove os espaços no fim de cada linha, e uma linha em branco é só espaço: ela some e seus parágrafos viram um bloco único. Colocar um caractere invisível nessa linha faz com que ela deixe de estar vazia e o espaçamento se mantém.',
+  },
+  {
+    question: 'Funciona também nos comentários e no Threads?',
+    answer:
+      'Sim. A mesma técnica funciona nos comentários do Instagram, no campo de bio, nas publicações do Threads e na maioria dos apps que removem linhas em branco. Cole o texto corrigido em qualquer lugar onde seu espaçamento costuma sumir.',
+  },
+  privacy,
+]
+
 const pages: Record<PageKey, PageSeo> = {
   root: {
     title: 'Formatador de publicações e limpador de hashtags grátis | PostCraft',
@@ -132,6 +189,42 @@ const pages: Record<PageKey, PageSeo> = {
     tip: 'Dica: mantenha-se abaixo de 280 caracteres, ou divida um post longo em uma thread numerada para melhor alcance.',
     faqs: twitterFaqs,
   },
+  threadSplitter: {
+    title: 'Divisor de threads do Twitter / X — Divida posts longos grátis | PostCraft',
+    description:
+      'Divisor de threads grátis. Cole um post longo e divida em tweets numerados de 280 caracteres que continuam naturais. Compatível com Threads 500 e limites personalizados.',
+    keywords:
+      'divisor de thread twitter, gerador de thread twitter, dividir texto longo em tweets, criar thread x, dividir post threads',
+    h1: 'Divisor de threads do Twitter / X',
+    intro:
+      'Cole um post longo e divida em uma thread numerada do X com um clique. O PostCraft corta nas quebras de parágrafo e de frase, então cada tweet continua sendo uma ideia completa.',
+    tip: 'Dica: escolha X · 280 para o Twitter ou Threads · 500 para o Meta Threads e copie os cards na ordem.',
+    faqs: threadFaqs,
+  },
+  quoteCard: {
+    title: 'Gerador de cards de citação — Transforme texto em PNG grátis | PostCraft',
+    description:
+      'Gerador de cards de citação grátis. Transforme qualquer frase em um PNG pronto para compartilhar com estilos escuro, Xiaohongshu, gradiente ou papel em 1:1, 4:5 e 16:9.',
+    keywords:
+      'gerador de card de citacao, transformar texto em imagem, criar citacao para instagram, gerador de card xiaohongshu, baixar citacao png',
+    h1: 'Gerador de cards de citação',
+    intro:
+      'Transforme uma frase em uma imagem pronta para compartilhar. Escolha um estilo, selecione 1:1, 4:5 ou 16:9 e baixe um PNG em alta resolução — tudo gerado no seu navegador.',
+    tip: 'Dica: 4:5 ocupa mais tela nos feeds do Instagram e do Xiaohongshu; 16:9 combina com X e LinkedIn.',
+    faqs: quoteFaqs,
+  },
+  igBreaker: {
+    title: 'Quebra de linha para Instagram — Mantenha o espaçamento grátis | PostCraft',
+    description:
+      'Ferramenta gratuita de quebra de linha para Instagram. Adicione espaçamento real de parágrafo em legendas, bios e comentários para que suas linhas em branco sobrevivam ao colar.',
+    keywords:
+      'quebra de linha instagram, quebra de linha bio instagram, adicionar espacos legenda instagram, espacamento paragrafo instagram, quebra de linha threads',
+    h1: 'Quebra de linha para Instagram',
+    intro:
+      'Divida sua legenda em parágrafos limpos e mantenha-os. O PostCraft adiciona caracteres de espaçamento invisíveis para que Instagram, Threads e o campo de bio parem de juntar suas linhas vazias.',
+    tip: 'Dica: posicione as linhas em branco que quiser, clique em "Corrigir quebras de linha" e cole direto no Instagram.',
+    faqs: breakerFaqs,
+  },
 }
 
 export const pt: Dict = {
@@ -147,6 +240,7 @@ export const pt: Dict = {
     tools: {
       studio: 'Estúdio de fontes',
       thread: 'Threads & linhas',
+      quote: 'Card de citação',
     },
     symbols: {
       title: 'Símbolos e emoji',
@@ -181,6 +275,36 @@ export const pt: Dict = {
       empty: 'Digite um texto e escolha um limite para dividi-lo em um thread.',
       overLimit: (n) => `Acima do limite em ${n.toLocaleString('pt-BR')} caracteres`,
       fit: 'Dentro do limite',
+    },
+    quote: {
+      title: 'Gerador de cards de citação',
+      subtitle:
+        'Transforme uma frase em um PNG pronto para compartilhar — 4 estilos, 3 proporções, sem cadastro.',
+      inputPlaceholder: 'Escreva ou cole a frase que vai no card…',
+      sample: 'Escreva o post que você gostaria de ter lido.',
+      authorLabel: 'Autor',
+      authorPlaceholder: 'Seu nome ou @perfil',
+      charsLeft: (n) => `restam ${n.toLocaleString('pt-BR')}`,
+      presetLabel: 'Estilo visual',
+      presets: {
+        dark: 'Escuro minimalista',
+        xiaohongshu: 'Xiaohongshu viral',
+        gradient: 'Gradiente moderno',
+        paper: 'Papel vintage',
+      },
+      ratioLabel: 'Proporção',
+      ratios: {
+        square: 'Quadrado · 1:1',
+        portrait: 'Feed · 4:5',
+        landscape: 'Paisagem · 16:9',
+      },
+      download: 'Baixar PNG',
+      downloading: 'Gerando…',
+      clear: 'Limpar',
+      previewLabel: 'Prévia do card',
+      sizeNote: (w, h) => `Exporta em ${w} × ${h} px`,
+      exportHint:
+        'Gerado e salvo inteiramente no seu navegador — a imagem nunca é enviada.',
     },
     livePreview: 'Pré-visualização',
     copy: 'Copiar texto limpo',
@@ -218,6 +342,8 @@ export const pt: Dict = {
       cleared: 'Editor limpo',
       lineBreaksFixed: 'Quebras corrigidas — linhas vazias serão mantidas ao colar',
       threadSplit: (n) => `Dividido em ${n} parte${n > 1 ? 's' : ''}`,
+      imageDownloaded: 'Card de citação baixado',
+      imageFailed: 'Falha ao exportar — tente de novo ou encurte a citação',
       hashtagsCleaned: (n) =>
         `${n} hashtag${n > 1 ? 's' : ''} limpa${n > 1 ? 's' : ''} e movida${n > 1 ? 's' : ''} para o final`,
       copied: 'Copiado para a área de transferência!',

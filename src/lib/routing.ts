@@ -10,8 +10,11 @@
  * English is the default locale and is served WITHOUT a prefix.
  */
 
-import { DEFAULT_LOCALE, DOMAIN, isLocale, type Locale } from '../config/i18n'
-import { PAGE_PATH, PAGES, type PageKey } from '../config/pages'
+// Explicit .ts extensions: this module is also loaded directly by Node
+// (`--experimental-strip-types`) from the sitemap generator and its tests, and
+// Node's ESM resolver does not do extensionless resolution.
+import { DEFAULT_LOCALE, DOMAIN, LOCALES, isLocale, type Locale } from '../config/i18n.ts'
+import { PAGE_PATH, PAGES, type PageKey } from '../config/pages.ts'
 
 export interface RouteInfo {
   locale: Locale
@@ -57,10 +60,21 @@ export interface AlternateLink {
 
 /** All 5 per-locale alternates for a given page (English is the x-default target). */
 export function getAlternateUrls(page: PageKey): AlternateLink[] {
-  return (Object.keys(PAGE_PATH) as PageKey[]).length
-    ? (['en', 'es', 'de', 'fr', 'pt'] as Locale[]).map((locale) => ({
-        hreflang: locale,
-        href: DOMAIN + buildPath(locale, page),
-      }))
-    : []
+  return LOCALES.map((locale) => ({
+    hreflang: locale,
+    href: DOMAIN + buildPath(locale, page),
+  }))
+}
+
+/**
+ * Every canonical URL in the matrix (7 pages × 5 locales = 35), in sitemap
+ * order. Shared by the routing tests and used to assert the generated
+ * sitemap and the runtime router agree on the exact same URL set.
+ */
+export function getAllRouteUrls(): string[] {
+  const urls: string[] = []
+  for (const page of PAGES) {
+    for (const locale of LOCALES) urls.push(DOMAIN + buildPath(locale, page))
+  }
+  return urls
 }

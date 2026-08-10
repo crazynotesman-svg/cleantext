@@ -84,6 +84,63 @@ const twitterFaqs: FaqItem[] = [
   privacy,
 ]
 
+const threadFaqs: FaqItem[] = [
+  {
+    question: 'Wie teile ich einen langen Beitrag in einen Twitter-/X-Thread auf?',
+    answer:
+      'Füge deinen Entwurf in den Thread-Splitter ein, wähle die Voreinstellung X · 280 und klicke auf „In Thread aufteilen“. PostCraft packt deinen Text in die größtmöglichen Blöcke, die noch ins Limit passen, und hängt an jeden einen Zähler (1/5), (2/5) an. Kopiere die Karten der Reihe nach und poste sie als Antworten.',
+  },
+  {
+    question: 'Wo schneidet der Splitter meinen Text?',
+    answer:
+      'Immer an einer natürlichen Grenze: zuerst an Absätzen, dann an Satzenden (. ! ?) und erst danach an Wortgrenzen. Ein Tweet wird nie mitten im Wort getrennt, sodass jeder Teil ein abgeschlossener Gedanke bleibt.',
+  },
+  {
+    question: 'Funktioniert das auch für Threads, Bluesky oder ein eigenes Limit?',
+    answer:
+      'Ja. Stelle die Voreinstellung auf Threads · 500 für Meta Threads um oder wähle „Benutzerdefiniert“ und gib ein beliebiges Limit ein — 300 für Bluesky, 3.000 für LinkedIn oder dein eigenes. Nummerierung und Zeichenzähler aktualisieren sich sofort.',
+  },
+  privacy,
+]
+
+const quoteFaqs: FaqItem[] = [
+  {
+    question: 'Wie mache ich aus einem Zitat ein Bild?',
+    answer:
+      'Tippe oder füge deine Zeile in das Zitatkarten-Tool ein, wähle eine der vier Vorlagen, entscheide dich für ein Seitenverhältnis und klicke auf „PNG herunterladen“. Die Karte wird live gerendert — die Vorschau entspricht exakt der gespeicherten Datei.',
+  },
+  {
+    question: 'Welche Größe sollte eine Zitatkarte für Instagram oder Xiaohongshu haben?',
+    answer:
+      'Nimm 4:5 (1080 × 1350). Das ist das höchste Format, das die Feeds von Instagram und Xiaohongshu ohne Beschnitt anzeigen, und es belegt am meisten Bildschirmfläche. 1:1 (1080 × 1080) eignet sich für den klassischen quadratischen Post, 16:9 (1920 × 1080) für X, LinkedIn oder einen Blog-Header.',
+  },
+  {
+    question: 'Ist das exportierte PNG hochauflösend?',
+    answer:
+      'Ja. Karten werden in ihrer echten Pixelgröße exportiert — 1080 × 1080, 1080 × 1350 oder 1920 × 1080. Das ist die native Upload-Auflösung aller großen Plattformen, sodass der Text scharf bleibt und nicht aus einer kleinen Vorschau hochskaliert wird.',
+  },
+  privacy,
+]
+
+const breakerFaqs: FaqItem[] = [
+  {
+    question: 'Wie füge ich Zeilenumbrüche in eine Instagram-Bio oder -Beschreibung ein?',
+    answer:
+      'Schreibe deinen Text mit den Leerzeilen genau dort, wo du sie haben willst, klicke auf „Zeilenumbrüche reparieren“ und füge das Ergebnis in Instagram ein. PostCraft setzt in jede leere Zeile ein unsichtbares Leerzeichen ohne Breite (U+200B), damit Instagram sie nicht entfernt.',
+  },
+  {
+    question: 'Warum löscht Instagram meine Leerzeilen beim Einfügen?',
+    answer:
+      'Instagram entfernt am Zeilenende jeden Leerraum — und eine leere Zeile besteht nur aus Leerraum. Sie verschwindet, und deine Absätze fallen zu einem Block zusammen. Ein unsichtbares Zeichen macht die Zeile „nicht leer“, und der Abstand bleibt erhalten.',
+  },
+  {
+    question: 'Funktioniert der Zeilenumbrecher auch in Kommentaren und auf Threads?',
+    answer:
+      'Ja. Dieselbe Technik funktioniert in Instagram-Kommentaren, im Bio-Feld, in Threads-Beiträgen und in den meisten Apps, die Leerzeilen entfernen. Füge den reparierten Text überall dort ein, wo dein Abstand sonst verschwindet.',
+  },
+  privacy,
+]
+
 const pages: Record<PageKey, PageSeo> = {
   root: {
     title: 'Kostenloser Formatter für Social-Media-Beiträge & Hashtag-Reiniger | PostCraft',
@@ -132,6 +189,42 @@ const pages: Record<PageKey, PageSeo> = {
     tip: 'Tipp: Bleib unter 280 Zeichen oder teile einen langen Beitrag in einen nummerierten Thread auf, um mehr Reichweite zu erzielen.',
     faqs: twitterFaqs,
   },
+  threadSplitter: {
+    title: 'Tweet-Thread-Splitter — Lange Beiträge in X-Threads teilen | PostCraft',
+    description:
+      'Kostenloser Tweet-Thread-Splitter. Füge einen langen Beitrag ein und teile ihn in nummerierte Tweets mit 280 Zeichen, die sich natürlich lesen. Threads 500 und eigene Limits inklusive.',
+    keywords:
+      'tweet thread splitter, twitter thread generator, langen text in tweets aufteilen, x thread erstellen, threads beitrag teilen',
+    h1: 'Tweet-Thread-Splitter',
+    intro:
+      'Füge einen langen Beitrag ein und teile ihn mit einem Klick in einen nummerierten X-Thread. PostCraft schneidet an Absatz- und Satzgrenzen, sodass jeder Tweet ein abgeschlossener Gedanke bleibt.',
+    tip: 'Tipp: Wähle X · 280 für Twitter oder Threads · 500 für Meta Threads und kopiere die Karten der Reihe nach.',
+    faqs: threadFaqs,
+  },
+  quoteCard: {
+    title: 'Zitatkarten-Generator — Text kostenlos als PNG-Bild erstellen | PostCraft',
+    description:
+      'Kostenloser Zitatkarten-Generator. Verwandle jeden Satz in ein teilbares PNG mit den Vorlagen Dark, Xiaohongshu, Gradient oder Paper in 1:1, 4:5 oder 16:9.',
+    keywords:
+      'zitatkarten generator, text in bild umwandeln, instagram zitat erstellen, xiaohongshu karte generator, zitat png herunterladen',
+    h1: 'Zitatkarten-Generator',
+    intro:
+      'Verwandle einen Satz in ein teilbares Bild. Wähle eine Vorlage, entscheide dich für 1:1, 4:5 oder 16:9 und lade ein hochauflösendes PNG herunter — alles direkt im Browser.',
+    tip: 'Tipp: 4:5 belegt in den Feeds von Instagram und Xiaohongshu die meiste Fläche; 16:9 passt zu X und LinkedIn.',
+    faqs: quoteFaqs,
+  },
+  igBreaker: {
+    title: 'Instagram Zeilenumbruch-Tool — Abstände in Beschreibung & Bio behalten | PostCraft',
+    description:
+      'Kostenloses Instagram-Zeilenumbruch-Tool. Füge echte Absatzabstände in Beschreibungen, Bio und Kommentare ein, damit deine Leerzeilen das Einfügen überleben.',
+    keywords:
+      'instagram zeilenumbruch, instagram bio zeilenumbruch, abstand instagram beschreibung, instagram absatz abstand tool, threads zeilenumbruch',
+    h1: 'Instagram Zeilenumbruch-Tool',
+    intro:
+      'Gliedere deine Beschreibung in saubere Absätze und behalte sie. PostCraft setzt unsichtbare Abstandszeichen, damit Instagram, Threads und das Bio-Feld deine Leerzeilen nicht mehr zusammenziehen.',
+    tip: 'Tipp: Setze die gewünschten Leerzeilen, klicke auf „Zeilenumbrüche reparieren“ und füge den Text direkt in Instagram ein.',
+    faqs: breakerFaqs,
+  },
 }
 
 export const de: Dict = {
@@ -147,6 +240,7 @@ export const de: Dict = {
     tools: {
       studio: 'Schriftstudio',
       thread: 'Thread & Zeilen',
+      quote: 'Zitatkarte',
     },
     symbols: {
       title: 'Symbole & Emoji',
@@ -181,6 +275,36 @@ export const de: Dict = {
       empty: 'Gib Text ein und wähle ein Limit, um ihn in einen Thread zu teilen.',
       overLimit: (n) => `Limit um ${n.toLocaleString('de-DE')} Zeichen überschritten`,
       fit: 'Innerhalb des Limits',
+    },
+    quote: {
+      title: 'Zitatkarten-Generator',
+      subtitle:
+        'Verwandle einen Satz in ein teilbares PNG — 4 Vorlagen, 3 Formate, ohne Anmeldung.',
+      inputPlaceholder: 'Schreibe oder füge die Zeile ein, die auf die Karte soll…',
+      sample: 'Schreibe den Beitrag, den du selbst gern gelesen hättest.',
+      authorLabel: 'Autor',
+      authorPlaceholder: 'Dein Name oder @handle',
+      charsLeft: (n) => `noch ${n.toLocaleString('de-DE')}`,
+      presetLabel: 'Stilvorlage',
+      presets: {
+        dark: 'Dunkel minimalistisch',
+        xiaohongshu: 'Xiaohongshu viral',
+        gradient: 'Moderner Verlauf',
+        paper: 'Vintage-Papier',
+      },
+      ratioLabel: 'Seitenverhältnis',
+      ratios: {
+        square: 'Quadratisch · 1:1',
+        portrait: 'Feed · 4:5',
+        landscape: 'Querformat · 16:9',
+      },
+      download: 'PNG herunterladen',
+      downloading: 'Wird gerendert…',
+      clear: 'Löschen',
+      previewLabel: 'Kartenvorschau',
+      sizeNote: (w, h) => `Export mit ${w} × ${h} px`,
+      exportHint:
+        'Wird komplett in deinem Browser erzeugt und gespeichert — das Bild wird nie hochgeladen.',
     },
     livePreview: 'Live-Vorschau',
     copy: 'Bereinigten Text kopieren',
@@ -218,6 +342,8 @@ export const de: Dict = {
       cleared: 'Editor geleert',
       lineBreaksFixed: 'Zeilenumbrüche gefixt — leere Zeilen bleiben beim Einfügen erhalten',
       threadSplit: (n) => `In ${n} Teil${n > 1 ? 'e' : ''} geteilt`,
+      imageDownloaded: 'Zitatkarte heruntergeladen',
+      imageFailed: 'Export fehlgeschlagen — versuche es erneut oder kürze das Zitat',
       hashtagsCleaned: (n) =>
         `${n} Hashtag${n > 1 ? 's' : ''} bereinigt und ans Ende verschoben`,
       copied: 'In Zwischenablage kopiert!',

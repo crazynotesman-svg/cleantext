@@ -8,9 +8,11 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "test": "node --experimental-strip-types src/lib/text.test.ts && node --experimental-strip-types src/lib/thread.test.ts && node --experimental-strip-types src/lib/symbols.test.ts"
+    "test": "node --experimental-strip-types src/lib/text.test.ts && node --experimental-strip-types src/lib/thread.test.ts && node --experimental-strip-types src/lib/symbols.test.ts && node --experimental-strip-types src/lib/quoteCard.test.ts && node --experimental-strip-types src/lib/routing.test.ts",
+    "sitemap": "node --experimental-strip-types scripts/build-sitemap.mjs"
   },
   "dependencies": {
+    "html-to-image": "^1.11.13",
     "lucide-react": "^1.31.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",

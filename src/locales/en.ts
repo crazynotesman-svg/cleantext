@@ -84,6 +84,63 @@ const twitterFaqs: FaqItem[] = [
   privacy,
 ]
 
+const threadFaqs: FaqItem[] = [
+  {
+    question: 'How do I split a long post into a Twitter / X thread?',
+    answer:
+      'Paste your draft into the Thread Splitter, choose the X · 280 preset, and click “Split into thread”. PostCraft packs your text into the largest chunks that still fit the limit and appends a (1/5), (2/5) counter to each one. Copy the cards in order and post them as replies to build the thread.',
+  },
+  {
+    question: 'Where does the splitter cut my text?',
+    answer:
+      'It always prefers a natural boundary: first paragraph breaks, then sentence endings (. ! ?), and only then word boundaries. A tweet is never cut in the middle of a word, so each part still reads like a finished thought instead of a fragment.',
+  },
+  {
+    question: 'Does it work for Threads, Bluesky or a custom limit?',
+    answer:
+      'Yes. Switch the preset to Threads · 500 for Meta Threads, or pick Custom and type any limit you need — 300 for Bluesky, 3,000 for LinkedIn, or your own. The numbering and the per-card character badge update instantly.',
+  },
+  privacy,
+]
+
+const quoteFaqs: FaqItem[] = [
+  {
+    question: 'How do I turn a quote into an image?',
+    answer:
+      'Type or paste your line into the Quote Card tool, pick one of the four visual presets, choose an aspect ratio, and click “Download PNG”. The card is rendered live as you type, so what you see in the preview is exactly what gets saved.',
+  },
+  {
+    question: 'What size should a quote card be for Instagram or Xiaohongshu?',
+    answer:
+      'Use 4:5 (1080 × 1350). It is the tallest ratio the Instagram and Xiaohongshu feeds display without cropping, so it takes up the most screen space. Choose 1:1 (1080 × 1080) for a classic square post, and 16:9 (1920 × 1080) for X, LinkedIn or a blog header.',
+  },
+  {
+    question: 'Is the exported PNG high resolution?',
+    answer:
+      'Yes. Cards export at their true pixel size — 1080 × 1080, 1080 × 1350 or 1920 × 1080 — which is the native upload resolution for every major platform, so the text stays crisp instead of being re-compressed from a small preview.',
+  },
+  privacy,
+]
+
+const breakerFaqs: FaqItem[] = [
+  {
+    question: 'How do I add line breaks to an Instagram bio or caption?',
+    answer:
+      'Write your text with the blank lines exactly where you want them, click “Fix line breaks”, then copy the result and paste it into Instagram. PostCraft inserts an invisible zero-width space (U+200B) on each empty line, which stops Instagram from collapsing it.',
+  },
+  {
+    question: 'Why does Instagram delete my blank lines when I paste?',
+    answer:
+      'Instagram trims trailing whitespace on every line, and a blank line is nothing but whitespace — so it gets removed and your paragraphs collapse into one block. Putting an invisible character on that line means it is no longer empty, and the spacing survives.',
+  },
+  {
+    question: 'Does the line breaker work in comments and on Threads?',
+    answer:
+      'Yes. The same invisible-character technique works in Instagram comments, the bio field, Threads posts, and most other apps that strip blank lines. Paste the fixed text anywhere your spacing normally disappears.',
+  },
+  privacy,
+]
+
 const pages: Record<PageKey, PageSeo> = {
   root: {
     title: 'Free Social Media Post Formatter & Hashtag Cleaner | PostCraft',
@@ -135,6 +192,42 @@ const pages: Record<PageKey, PageSeo> = {
     tip: 'Tip: stay under 280 characters, or split a long post into a numbered thread for better reach.',
     faqs: twitterFaqs,
   },
+  threadSplitter: {
+    title: 'Tweet Thread Splitter — Split a Long Post into an X Thread | PostCraft',
+    description:
+      'Free tweet thread splitter. Paste a long post and split it into numbered 280-character tweets that still read naturally. Threads 500 and custom limits supported.',
+    keywords:
+      'tweet thread splitter, twitter thread generator, split long text into tweets, x thread maker, threads post splitter',
+    h1: 'Tweet Thread Splitter',
+    intro:
+      'Paste a long post and split it into a numbered X thread in one click. PostCraft cuts on paragraph and sentence boundaries, so every tweet still reads like a finished thought.',
+    tip: 'Tip: pick X · 280 for Twitter or Threads · 500 for Meta Threads, then copy the cards in order.',
+    faqs: threadFaqs,
+  },
+  quoteCard: {
+    title: 'Quote Card Generator — Free Text to PNG Image Maker | PostCraft',
+    description:
+      'Free quote card generator. Turn any sentence into a share-ready PNG with dark, Xiaohongshu, gradient or paper presets in 1:1, 4:5 or 16:9. No signup, no watermark upload.',
+    keywords:
+      'quote card generator, text to image maker, instagram quote maker, xiaohongshu card generator, quote png download',
+    h1: 'Quote Card Generator',
+    intro:
+      'Turn a sentence into a share-ready image. Pick a preset, choose 1:1, 4:5 or 16:9, and download a high-resolution PNG — everything renders inside your browser.',
+    tip: 'Tip: 4:5 fills the most screen space in the Instagram and Xiaohongshu feeds; 16:9 suits X and LinkedIn.',
+    faqs: quoteFaqs,
+  },
+  igBreaker: {
+    title: 'Instagram Line Breaker — Keep Caption & Bio Spacing Free | PostCraft',
+    description:
+      'Free Instagram line breaker. Add real paragraph spacing to captions, bios and comments so your blank lines survive the paste — on Instagram and Threads.',
+    keywords:
+      'instagram line breaker, instagram bio line break, add spaces instagram caption, instagram paragraph spacing tool, threads line break',
+    h1: 'Instagram Line Breaker',
+    intro:
+      'Break your caption into clean paragraphs and keep them. PostCraft adds invisible spacing characters so Instagram, Threads and the bio field stop collapsing your empty lines.',
+    tip: 'Tip: lay out the blank lines you want, click “Fix line breaks”, then paste straight into Instagram.',
+    faqs: breakerFaqs,
+  },
 }
 
 export const en: Dict = {
@@ -150,6 +243,7 @@ export const en: Dict = {
     tools: {
       studio: 'Font Studio',
       thread: 'Thread & Line',
+      quote: 'Quote Card',
     },
     symbols: {
       title: 'Symbols & Emoji',
@@ -184,6 +278,36 @@ export const en: Dict = {
       empty: 'Enter some text and choose a limit to split it into a thread.',
       overLimit: (n) => `Over limit by ${n.toLocaleString('en-US')} characters`,
       fit: 'Fits within the limit',
+    },
+    quote: {
+      title: 'Quote Card Generator',
+      subtitle:
+        'Turn a sentence into a share-ready PNG — 4 presets, 3 ratios, no signup.',
+      inputPlaceholder: 'Write or paste the line you want on the card…',
+      sample: 'Write the post you wish someone had written for you.',
+      authorLabel: 'Author',
+      authorPlaceholder: 'Your name or @handle',
+      charsLeft: (n) => `${n.toLocaleString('en-US')} left`,
+      presetLabel: 'Style preset',
+      presets: {
+        dark: 'Dark Minimalist',
+        xiaohongshu: 'Xiaohongshu Viral',
+        gradient: 'Gradient Vibe',
+        paper: 'Paper Aesthetic',
+      },
+      ratioLabel: 'Aspect ratio',
+      ratios: {
+        square: 'Square · 1:1',
+        portrait: 'Feed · 4:5',
+        landscape: 'Landscape · 16:9',
+      },
+      download: 'Download PNG',
+      downloading: 'Rendering…',
+      clear: 'Clear',
+      previewLabel: 'Card preview',
+      sizeNote: (w, h) => `Exports at ${w} × ${h} px`,
+      exportHint:
+        'Rendered and saved entirely in your browser — the image is never uploaded.',
     },
     livePreview: 'Live preview',
     copy: 'Copy Clean Text',
@@ -224,6 +348,8 @@ export const en: Dict = {
       cleared: 'Editor cleared',
       lineBreaksFixed: 'Line breaks fixed — blank lines will survive the paste',
       threadSplit: (n) => `Split into ${n} part${n > 1 ? 's' : ''}`,
+      imageDownloaded: 'Quote card downloaded',
+      imageFailed: 'Export failed — try again or shorten the quote',
     },
     seeMore: 'See more',
     social: {

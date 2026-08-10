@@ -47,6 +47,7 @@ export interface UiDict {
   tools: {
     studio: string
     thread: string
+    quote: string
   }
   /** Symbol & emoji picker UI. */
   symbols: {
@@ -88,6 +89,39 @@ export interface UiDict {
     /** Per-card message when the part fits. */
     fit: string
   }
+  /** Quote Card Generator tool UI. */
+  quote: {
+    title: string
+    subtitle: string
+    inputPlaceholder: string
+    /** Placeholder quote rendered on the card before the user types. */
+    sample: string
+    authorLabel: string
+    authorPlaceholder: string
+    /** Remaining characters counter, e.g. "412 left". */
+    charsLeft: (n: number) => string
+    presetLabel: string
+    presets: {
+      dark: string
+      xiaohongshu: string
+      gradient: string
+      paper: string
+    }
+    ratioLabel: string
+    ratios: {
+      square: string
+      portrait: string
+      landscape: string
+    }
+    download: string
+    downloading: string
+    clear: string
+    previewLabel: string
+    /** Export dimension note, e.g. "Exports at 1080 × 1080 px". */
+    sizeNote: (w: number, h: number) => string
+    /** Reassurance line under the export button. */
+    exportHint: string
+  }
   /** Live preview section heading. */
   livePreview: string
   /** Copy button label (idle). */
@@ -128,6 +162,10 @@ export interface UiDict {
     lineBreaksFixed: string
     /** After splitting a post into a thread of n parts. */
     threadSplit: (n: number) => string
+    /** After a quote card PNG has been written to disk. */
+    imageDownloaded: string
+    /** When the PNG export throws (canvas/security failure). */
+    imageFailed: string
   }
   /** "See more" divider label in the preview card. */
   seeMore: string

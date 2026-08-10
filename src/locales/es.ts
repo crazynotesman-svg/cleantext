@@ -84,6 +84,63 @@ const twitterFaqs: FaqItem[] = [
   privacy,
 ]
 
+const threadFaqs: FaqItem[] = [
+  {
+    question: '¿Cómo divido una publicación larga en un hilo de Twitter / X?',
+    answer:
+      'Pega tu borrador en el divisor de hilos, elige el preajuste X · 280 y haz clic en "Dividir en hilo". PostCraft agrupa tu texto en los bloques más grandes que caben en el límite y añade un contador (1/5), (2/5) a cada uno. Copia las tarjetas en orden y publícalas como respuestas para construir el hilo.',
+  },
+  {
+    question: '¿Dónde corta el texto el divisor?',
+    answer:
+      'Siempre prefiere un límite natural: primero los saltos de párrafo, después el final de las frases (. ! ?) y solo entonces los espacios entre palabras. Nunca se corta un tuit en mitad de una palabra, así que cada parte sigue leyéndose como una idea completa.',
+  },
+  {
+    question: '¿Funciona con Threads, Bluesky o un límite personalizado?',
+    answer:
+      'Sí. Cambia el preajuste a Threads · 500 para Meta Threads, o elige Personalizado y escribe el límite que necesites: 300 para Bluesky, 3.000 para LinkedIn o el tuyo propio. La numeración y el contador de cada tarjeta se actualizan al instante.',
+  },
+  privacy,
+]
+
+const quoteFaqs: FaqItem[] = [
+  {
+    question: '¿Cómo convierto una frase en una imagen?',
+    answer:
+      'Escribe o pega tu frase en la herramienta de tarjetas, elige uno de los cuatro estilos visuales, selecciona una proporción y haz clic en "Descargar PNG". La tarjeta se dibuja en vivo mientras escribes, así que lo que ves en la vista previa es exactamente lo que se guarda.',
+  },
+  {
+    question: '¿Qué tamaño debe tener una tarjeta para Instagram o Xiaohongshu?',
+    answer:
+      'Usa 4:5 (1080 × 1350). Es la proporción más alta que los feeds de Instagram y Xiaohongshu muestran sin recortar, así que ocupa más pantalla. Elige 1:1 (1080 × 1080) para un post cuadrado clásico y 16:9 (1920 × 1080) para X, LinkedIn o la cabecera de un blog.',
+  },
+  {
+    question: '¿El PNG exportado tiene alta resolución?',
+    answer:
+      'Sí. Las tarjetas se exportan a su tamaño real en píxeles (1080 × 1080, 1080 × 1350 o 1920 × 1080), que es la resolución nativa de subida de las principales plataformas, así que el texto se mantiene nítido en lugar de recomprimirse desde una vista previa pequeña.',
+  },
+  privacy,
+]
+
+const breakerFaqs: FaqItem[] = [
+  {
+    question: '¿Cómo añado saltos de línea a una biografía o descripción de Instagram?',
+    answer:
+      'Escribe tu texto con las líneas en blanco exactamente donde las quieras, haz clic en "Arreglar saltos de línea" y copia el resultado en Instagram. PostCraft inserta un espacio de ancho cero (U+200B) invisible en cada línea vacía, lo que impide que Instagram la elimine.',
+  },
+  {
+    question: '¿Por qué Instagram borra mis líneas en blanco al pegar?',
+    answer:
+      'Instagram recorta los espacios finales de cada línea, y una línea en blanco no es más que espacio, así que desaparece y tus párrafos se juntan en un solo bloque. Al poner un carácter invisible en esa línea deja de estar vacía y el espaciado se conserva.',
+  },
+  {
+    question: '¿Funciona también en los comentarios y en Threads?',
+    answer:
+      'Sí. La misma técnica del carácter invisible funciona en los comentarios de Instagram, en la biografía, en las publicaciones de Threads y en la mayoría de apps que eliminan las líneas en blanco. Pega el texto corregido donde tu espaciado suele desaparecer.',
+  },
+  privacy,
+]
+
 const pages: Record<PageKey, PageSeo> = {
   root: {
     title: 'Formateador de posts y limpiador de hashtags gratis | PostCraft',
@@ -132,6 +189,42 @@ const pages: Record<PageKey, PageSeo> = {
     tip: 'Consejo: mantente por debajo de 280 caracteres, o divide una publicación larga en un hilo numerado para mayor alcance.',
     faqs: twitterFaqs,
   },
+  threadSplitter: {
+    title: 'Divisor de hilos para Twitter / X — Divide posts largos gratis | PostCraft',
+    description:
+      'Divisor de hilos para tuits gratis. Pega un post largo y divídelo en tuits numerados de 280 caracteres que se leen con naturalidad. Compatible con Threads 500 y límites personalizados.',
+    keywords:
+      'divisor de hilos twitter, generador de hilos twitter, dividir texto largo en tuits, crear hilo x, divisor de posts threads',
+    h1: 'Divisor de hilos para Twitter / X',
+    intro:
+      'Pega un post largo y divídelo en un hilo numerado de X con un clic. PostCraft corta en los límites de párrafo y de frase, así cada tuit sigue siendo una idea completa.',
+    tip: 'Consejo: elige X · 280 para Twitter o Threads · 500 para Meta Threads y copia las tarjetas en orden.',
+    faqs: threadFaqs,
+  },
+  quoteCard: {
+    title: 'Generador de tarjetas de citas — Convierte texto en PNG gratis | PostCraft',
+    description:
+      'Generador de tarjetas de citas gratis. Convierte cualquier frase en un PNG listo para compartir con estilos oscuro, Xiaohongshu, degradado o papel en 1:1, 4:5 y 16:9.',
+    keywords:
+      'generador de tarjetas de citas, convertir texto en imagen, crear citas para instagram, generador de tarjetas xiaohongshu, descargar cita png',
+    h1: 'Generador de tarjetas de citas',
+    intro:
+      'Convierte una frase en una imagen lista para compartir. Elige un estilo, selecciona 1:1, 4:5 o 16:9 y descarga un PNG en alta resolución: todo se genera en tu navegador.',
+    tip: 'Consejo: 4:5 ocupa más pantalla en los feeds de Instagram y Xiaohongshu; 16:9 encaja mejor en X y LinkedIn.',
+    faqs: quoteFaqs,
+  },
+  igBreaker: {
+    title: 'Separador de líneas para Instagram — Mantén el espaciado gratis | PostCraft',
+    description:
+      'Separador de líneas para Instagram gratis. Añade espaciado real entre párrafos en descripciones, biografías y comentarios para que tus líneas en blanco sobrevivan al pegar.',
+    keywords:
+      'separador de lineas instagram, salto de linea biografia instagram, añadir espacios descripcion instagram, espaciado parrafos instagram, salto de linea threads',
+    h1: 'Separador de líneas para Instagram',
+    intro:
+      'Divide tu descripción en párrafos limpios y consérvalos. PostCraft añade caracteres de espaciado invisibles para que Instagram, Threads y la biografía dejen de juntar tus líneas vacías.',
+    tip: 'Consejo: coloca las líneas en blanco que quieras, haz clic en "Arreglar saltos de línea" y pega directamente en Instagram.',
+    faqs: breakerFaqs,
+  },
 }
 
 export const es: Dict = {
@@ -147,6 +240,7 @@ export const es: Dict = {
     tools: {
       studio: 'Estudio de fuentes',
       thread: 'Hilos y saltos',
+      quote: 'Tarjeta de cita',
     },
     symbols: {
       title: 'Símbolos y emoji',
@@ -181,6 +275,36 @@ export const es: Dict = {
       empty: 'Escribe texto y elige un límite para dividirlo en un hilo.',
       overLimit: (n) => `Supera el límite por ${n.toLocaleString('es-ES')} caracteres`,
       fit: 'Dentro del límite',
+    },
+    quote: {
+      title: 'Generador de tarjetas de citas',
+      subtitle:
+        'Convierte una frase en un PNG listo para compartir: 4 estilos, 3 proporciones, sin registro.',
+      inputPlaceholder: 'Escribe o pega la frase que quieres en la tarjeta…',
+      sample: 'Escribe el post que te habría gustado leer.',
+      authorLabel: 'Autor',
+      authorPlaceholder: 'Tu nombre o @usuario',
+      charsLeft: (n) => `quedan ${n.toLocaleString('es-ES')}`,
+      presetLabel: 'Estilo visual',
+      presets: {
+        dark: 'Oscuro minimalista',
+        xiaohongshu: 'Xiaohongshu viral',
+        gradient: 'Degradado moderno',
+        paper: 'Papel vintage',
+      },
+      ratioLabel: 'Proporción',
+      ratios: {
+        square: 'Cuadrada · 1:1',
+        portrait: 'Feed · 4:5',
+        landscape: 'Horizontal · 16:9',
+      },
+      download: 'Descargar PNG',
+      downloading: 'Generando…',
+      clear: 'Limpiar',
+      previewLabel: 'Vista previa de la tarjeta',
+      sizeNote: (w, h) => `Se exporta a ${w} × ${h} px`,
+      exportHint:
+        'Se genera y se guarda por completo en tu navegador: la imagen nunca se sube.',
     },
     livePreview: 'Vista previa',
     copy: 'Copiar texto limpio',
@@ -218,6 +342,8 @@ export const es: Dict = {
       cleared: 'Editor vaciado',
       lineBreaksFixed: 'Saltos arreglados: las líneas en blanco se conservarán al pegar',
       threadSplit: (n) => `Dividido en ${n} parte${n > 1 ? 's' : ''}`,
+      imageDownloaded: 'Tarjeta de cita descargada',
+      imageFailed: 'Error al exportar: inténtalo de nuevo o acorta la cita',
       hashtagsCleaned: (n) =>
         `${n} hashtag${n > 1 ? 's' : ''} limpiado${n > 1 ? 's' : ''} y movido${n > 1 ? 's' : ''} al final`,
       copied: '¡Copiado al portapapeles!',

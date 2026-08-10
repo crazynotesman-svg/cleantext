@@ -6,10 +6,15 @@
  */
 
 import { DOMAIN, type Locale } from './i18n'
-import { MATRIX_PAGES, PAGE_DEFAULT_PLATFORM, type PageKey } from './pages'
+import {
+  MATRIX_PAGES,
+  PAGE_DEFAULT_PLATFORM,
+  PAGE_DEFAULT_TOOL,
+  type PageKey,
+} from './pages'
 import { buildPath } from '../lib/routing'
 import { DICTS } from '../locales'
-import type { PlatformId, UnicodeStyle } from '../types'
+import type { PlatformId, ToolId, UnicodeStyle } from '../types'
 import type { FaqItem } from '../locales/types'
 
 export interface RouteSeo {
@@ -25,6 +30,8 @@ export interface RouteSeo {
   canonical: string
   /** Platform preview tab pre-selected when this route loads. */
   defaultPlatform: PlatformId
+  /** Creator Suite tool opened when this route loads. */
+  defaultTool: ToolId
   /** Page H1 (keyword-anchored on matrix pages). */
   h1: string
   /** Lead paragraph under the H1. */
@@ -53,6 +60,7 @@ export function getRouteSeo(locale: Locale, page: PageKey): RouteSeo {
     keywords: p.keywords,
     canonical: DOMAIN + path,
     defaultPlatform: PAGE_DEFAULT_PLATFORM[page],
+    defaultTool: PAGE_DEFAULT_TOOL[page],
     h1: p.h1,
     intro: p.intro,
     tip: p.tip,
