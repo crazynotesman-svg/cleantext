@@ -7,7 +7,6 @@ import {
   PADDING_RATIO,
   QUOTE_MAX_LENGTH,
   QUOTE_PRESETS,
-  WATERMARK_TEXT,
   attributionFontSize,
   buildFileName,
   fitFontSize,
@@ -15,7 +14,6 @@ import {
   getAspectDimensions,
   getPreset,
   normalizeQuote,
-  watermarkFontSize,
   type AspectRatioId,
   type QuotePresetId,
 } from '../lib/quoteCard'
@@ -57,7 +55,6 @@ function QuoteCard({
   const quoteSize = fitFontSize(text, ratio)
   const authorSize = attributionFontSize(quoteSize)
   const markSize = Math.round(width * 0.155)
-  const wmSize = watermarkFontSize(ratio)
   const attribution = formatAttribution(author)
   const panel = preset.panel
 
@@ -139,7 +136,6 @@ function QuoteCard({
           style={{
             display: 'flex',
             alignItems: 'flex-end',
-            justifyContent: 'space-between',
             gap: Math.round(pad * 0.5),
           }}
         >
@@ -152,17 +148,6 @@ function QuoteCard({
             }}
           >
             {attribution}
-          </span>
-          <span
-            style={{
-              flexShrink: 0,
-              fontSize: wmSize,
-              color: preset.watermark,
-              letterSpacing: '0.03em',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {WATERMARK_TEXT}
           </span>
         </div>
       </div>

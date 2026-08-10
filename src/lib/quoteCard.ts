@@ -65,8 +65,6 @@ export interface QuotePreset {
   muted: string
   /** Decorative opening quote-mark colour. */
   mark: string
-  /** Watermark colour. */
-  watermark: string
   /** Font stack for the quote body (system stacks only — see note below). */
   font: string
   /** Quote body font weight. */
@@ -97,7 +95,6 @@ export const QUOTE_PRESET_STYLES: Record<QuotePresetId, QuotePreset> = {
     text: '#f7f9f9',
     muted: '#8b98a5',
     mark: 'rgba(29,155,240,0.45)',
-    watermark: 'rgba(139,152,165,0.78)',
     font: SANS,
     weight: 600,
     tracking: '-0.015em',
@@ -118,7 +115,6 @@ export const QUOTE_PRESET_STYLES: Record<QuotePresetId, QuotePreset> = {
     text: '#2f2b33',
     muted: '#8a7f8c',
     mark: 'rgba(255,107,138,0.38)',
-    watermark: 'rgba(126,114,126,0.72)',
     font: SANS,
     weight: 600,
     tracking: '0em',
@@ -135,7 +131,6 @@ export const QUOTE_PRESET_STYLES: Record<QuotePresetId, QuotePreset> = {
     text: '#ffffff',
     muted: 'rgba(255,255,255,0.80)',
     mark: 'rgba(255,255,255,0.38)',
-    watermark: 'rgba(255,255,255,0.72)',
     font: SANS,
     weight: 700,
     tracking: '-0.02em',
@@ -157,7 +152,6 @@ export const QUOTE_PRESET_STYLES: Record<QuotePresetId, QuotePreset> = {
     text: '#3b3126',
     muted: '#7a6a52',
     mark: 'rgba(122,106,82,0.38)',
-    watermark: 'rgba(122,106,82,0.85)',
     font: SERIF,
     weight: 500,
     tracking: '0.005em',
@@ -172,9 +166,6 @@ export function getPreset(id: QuotePresetId): QuotePreset {
 /* ------------------------------------------------------------------ *
  * Layout maths
  * ------------------------------------------------------------------ */
-
-/** Attribution shown bottom-right on every exported card. */
-export const WATERMARK_TEXT = 'Made with postcraft.100ideas.net'
 
 /** Soft ceiling for the quote body; the textarea enforces it. */
 export const QUOTE_MAX_LENGTH = 600
@@ -210,11 +201,6 @@ export function fitFontSize(text: string, ratio: AspectRatioId): number {
 /** Author / handle size, derived from the quote size so the hierarchy holds. */
 export function attributionFontSize(quoteSize: number): number {
   return Math.round(Math.max(quoteSize * 0.42, 20))
-}
-
-/** Watermark size — fixed to the card width so it never dominates. */
-export function watermarkFontSize(ratio: AspectRatioId): number {
-  return Math.round(ASPECT_DIMENSIONS[ratio].width * 0.019)
 }
 
 /* ------------------------------------------------------------------ *

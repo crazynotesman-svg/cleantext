@@ -7,7 +7,6 @@ import {
   ASPECT_RATIOS,
   QUOTE_PRESETS,
   QUOTE_PRESET_STYLES,
-  WATERMARK_TEXT,
   attributionFontSize,
   buildFileName,
   fitFontSize,
@@ -16,7 +15,6 @@ import {
   getPreset,
   normalizeQuote,
   slugify,
-  watermarkFontSize,
   type AspectRatioId,
 } from './quoteCard.ts'
 
@@ -47,9 +45,9 @@ console.log('presets')
   )
   const missing = QUOTE_PRESETS.filter((id) => {
     const p = QUOTE_PRESET_STYLES[id]
-    return !p || !p.surface || !p.text || !p.watermark || !p.font
+    return !p || !p.surface || !p.text || !p.font
   })
-  eq('every preset defines surface/text/watermark/font', missing, [])
+  eq('every preset defines surface/text/font', missing, [])
   eq('getPreset round-trips the id', getPreset('paper').id, 'paper')
   eq('dark + gradient are flagged dark', [getPreset('dark').dark, getPreset('gradient').dark], [true, true])
   eq(
@@ -110,7 +108,6 @@ console.log('derived sizes')
 {
   eq('attribution is smaller than the quote', attributionFontSize(80) < 80, true)
   eq('attribution has a readable floor', attributionFontSize(10), 20)
-  eq('watermark scales with card width', watermarkFontSize('16:9') > watermarkFontSize('1:1'), true)
 }
 
 console.log('slugify + buildFileName')
@@ -143,11 +140,6 @@ console.log('normalizeQuote + attribution')
   eq('does not truncate long quotes', normalizeQuote('x'.repeat(900)).length, 900)
   eq('formats an author with an em dash', formatAttribution(' Steve Jobs '), '— Steve Jobs')
   eq('blank author yields an empty line', formatAttribution('   '), '')
-}
-
-console.log('watermark')
-{
-  eq('watermark text matches the brand spec', WATERMARK_TEXT, 'Made with postcraft.100ideas.net')
 }
 
 console.log(`\n${passed} passed, ${failed} failed`)
